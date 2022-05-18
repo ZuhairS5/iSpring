@@ -106,10 +106,9 @@
 		33A147992832A78600737AEA /* iSpring */ = {
 			isa = PBXGroup;
 			children = (
-				33A1479A2832A78600737AEA /* iSpringApp.swift */,
-				33A1479C2832A78600737AEA /* ContentView.swift */,
-				33A1479E2832A78C00737AEA /* Assets.xcassets */,
-				C6F3CE632833FF7F00CA607D /* GoogleService-Info.plist */,
+				C6A9DC4128355621006931BC /* Models */,
+				C6A9DC432835563F006931BC /* Views */,
+				C6A9DC422835562C006931BC /* ViewModels */,
 				33A147A02832A78C00737AEA /* Preview Content */,
 			);
 			path = iSpring;
@@ -138,6 +137,31 @@
 				33A147B72832A78D00737AEA /* iSpringUITestsLaunchTests.swift */,
 			);
 			path = iSpringUITests;
+			sourceTree = "<group>";
+		};
+		C6A9DC4128355621006931BC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				33A1479A2832A78600737AEA /* iSpringApp.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		C6A9DC422835562C006931BC /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				33A1479E2832A78C00737AEA /* Assets.xcassets */,
+				C6F3CE632833FF7F00CA607D /* GoogleService-Info.plist */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		C6A9DC432835563F006931BC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				33A1479C2832A78600737AEA /* ContentView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
