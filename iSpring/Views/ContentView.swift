@@ -8,9 +8,24 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    // model variable keeps track of changes in the ViewModel object
+    @ObservedObject var model = viewModel();
+    
     var body: some View {
-        Text("Hello, Zuhair we did it? im so lost lmao")
-            .padding()
+        
+        List(model.userList) { item in
+            
+            Text(item.username)
+            
+        }
+        
+    }
+    
+    init() {
+        
+        model.getData()
+        
     }
 }
 
