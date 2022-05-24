@@ -12,6 +12,9 @@ struct ContentView: View {
     // model variable keeps track of changes in the ViewModel object
     @ObservedObject var model = viewModel();
     
+    @State var email = ""
+    
+    
     var body: some View {
         
 //        List(model.userList) { item in
@@ -32,8 +35,8 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ContentView()
+//    }
+//}
