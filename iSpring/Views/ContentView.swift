@@ -14,11 +14,14 @@ struct ContentView: View {
     
     var body: some View {
         
-        List(model.userList) { item in
-            
-            Text(item.username)
-            
-        }
+//        List(model.userList) { item in
+//
+//            Text(item.username)
+//
+//        }
+        
+        Text("Hello, world!")
+            .padding()
         
     }
     
