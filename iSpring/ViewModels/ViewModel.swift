@@ -98,6 +98,4 @@ class viewModel: ObservableObject {
         
     }
     
-    
-    
 }
