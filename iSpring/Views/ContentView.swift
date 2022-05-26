@@ -8,23 +8,56 @@
 import SwiftUI
 
 struct ContentView: View {
-    
-    // model variable keeps track of changes in the ViewModel object
-    @ObservedObject var model = viewModel();
-    
-    @State var email = ""
-    
-    
     var body: some View {
-        
-//        List(model.userList) { item in
-//
-//            Text(item.username)
-//
-//        }
-        
-        Text("Hello, world!")
+<<<<<<< Updated upstream
+        Text("Hello, Zuhair we did it!")
             .padding()
+=======
+        
+        // test for reading firebase successfully!
+//        List(model.userList) { item in
+//            Text(item.username)
+//        }
+        // vertical stack contains banner, posts and navigation bar
+        VStack {
+            // banner: user profile picture and iSpring Logo
+            Group {
+                
+                ZStack {
+                    
+                    Rectangle()
+                        .size(width: 375, height: 734 / 8)
+                        .fill(Color.black)
+                        .overlay(alignment: .topLeading) {
+                            Spacer()
+                            Image("iSpring_logo")
+                            Spacer()
+                        }
+                    
+                    
+                }
+                
+            }
+            
+            
+            /*
+             
+             Post Container:
+             - shows user profile picture (or default)
+             - username
+             - context text
+             - time to expiry
+             - likes/dislikes/resprings
+             
+             */
+            
+            HStack {
+                
+                
+                
+            }
+            
+        }
         
     }
     
@@ -32,11 +65,12 @@ struct ContentView: View {
         
         model.getData()
         
+>>>>>>> Stashed changes
     }
 }
 
-//struct ContentView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ContentView()
-//    }
-//}
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
+}
