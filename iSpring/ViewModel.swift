@@ -9,6 +9,7 @@ import Foundation
 import Firebase
 import FirebaseAuth
 
+// view model class inherits from observable object
 class viewModel: ObservableObject {
     
     // whenever userList changes, the corresponding view will redraw to update data being displayed
