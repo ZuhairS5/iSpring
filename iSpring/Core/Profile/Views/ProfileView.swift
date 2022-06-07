@@ -21,6 +21,7 @@ struct ProfileView: View {
                             Text("Zuhair Shaikh")
                                 .font(.title)
                             .bold()
+                            Spacer()
                         }
                         
                         Text("@orange")
@@ -35,7 +36,6 @@ struct ProfileView: View {
                 }
             }
         }
-        
         
     }
 }
