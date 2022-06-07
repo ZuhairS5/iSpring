@@ -11,18 +11,32 @@ struct ProfileView: View {
     var body: some View {
         
         VStack(alignment: .leading) {
-            
             ScrollView {
                 VStack {
                     headerView.ignoresSafeArea()
+                    
+                    VStack(alignment: .leading, spacing: 4) {
+                        
+                        HStack {
+                            Text("Zuhair Shaikh")
+                                .font(.title)
+                            .bold()
+                        }
+                        
+                        Text("@orange")
+                        
+                    }
+                    .padding(.horizontal)
+                    
                     ForEach(0 ... 20, id: \.self) { _ in
                         SpringRowView()
                             .padding()
                     }
                 }
             }
-            footerView.frame(height: 75)
         }
+        
+        
     }
 }
 
@@ -59,19 +73,6 @@ extension ProfileView {
             }
             .frame(height: 125)
             Spacer()
-        }
-        
-    }
-    
-    var footerView: some View {
-        
-        ZStack(alignment: .top) {
-            
-            Color(.systemGray)
-                .ignoresSafeArea()
-            
-            
-            
         }
         
     }

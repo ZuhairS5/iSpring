@@ -16,6 +16,15 @@
 		33A147B82832A78D00737AEA /* iSpringUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A147B72832A78D00737AEA /* iSpringUITestsLaunchTests.swift */; };
 		C60786D42835F7F4009C7881 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60786D32835F7F4009C7881 /* UserModel.swift */; };
 		C60786D62835F82D009C7881 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60786D52835F82D009C7881 /* ViewModel.swift */; };
+		C626D295284EA423007C3B3E /* UserRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C626D294284EA423007C3B3E /* UserRowView.swift */; };
+		C626D29A284EDF47007C3B3E /* SideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C626D299284EDF46007C3B3E /* SideMenuView.swift */; };
+		C626D29E284EDF72007C3B3E /* SideMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C626D29D284EDF72007C3B3E /* SideMenuViewModel.swift */; };
+		C626D2A0284F0B15007C3B3E /* SideMenuOptionRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C626D29F284F0B15007C3B3E /* SideMenuOptionRowView.swift */; };
+		C626D2A5284F8871007C3B3E /* NewSpringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C626D2A4284F8871007C3B3E /* NewSpringView.swift */; };
+		C626D2A7284F8BE3007C3B3E /* NewSpringTextArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = C626D2A6284F8BE3007C3B3E /* NewSpringTextArea.swift */; };
+		C626D2AC284F974E007C3B3E /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C626D2AB284F974E007C3B3E /* LoginView.swift */; };
+		C626D2AE284F975C007C3B3E /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C626D2AD284F975C007C3B3E /* SignUpView.swift */; };
+		C626D2B0284F9B4A007C3B3E /* RoundedShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = C626D2AF284F9B4A007C3B3E /* RoundedShape.swift */; };
 		C68FCB10283403EF000E4027 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = C68FCB0F283403EF000E4027 /* FirebaseAnalytics */; };
 		C68FCB12283403EF000E4027 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = C68FCB11283403EF000E4027 /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		C68FCB14283403EF000E4027 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = C68FCB13283403EF000E4027 /* FirebaseAuth */; };
@@ -63,6 +72,15 @@
 		33A147B72832A78D00737AEA /* iSpringUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iSpringUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		C60786D32835F7F4009C7881 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		C60786D52835F82D009C7881 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		C626D294284EA423007C3B3E /* UserRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRowView.swift; sourceTree = "<group>"; };
+		C626D299284EDF46007C3B3E /* SideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuView.swift; sourceTree = "<group>"; };
+		C626D29D284EDF72007C3B3E /* SideMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewModel.swift; sourceTree = "<group>"; };
+		C626D29F284F0B15007C3B3E /* SideMenuOptionRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuOptionRowView.swift; sourceTree = "<group>"; };
+		C626D2A4284F8871007C3B3E /* NewSpringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSpringView.swift; sourceTree = "<group>"; };
+		C626D2A6284F8BE3007C3B3E /* NewSpringTextArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSpringTextArea.swift; sourceTree = "<group>"; };
+		C626D2AB284F974E007C3B3E /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		C626D2AD284F975C007C3B3E /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		C626D2AF284F9B4A007C3B3E /* RoundedShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedShape.swift; sourceTree = "<group>"; };
 		C6DC63E9284521F800F2C81A /* SpringFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpringFeedView.swift; sourceTree = "<group>"; };
 		C6DC63EC2845232400F2C81A /* SpringRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpringRowView.swift; sourceTree = "<group>"; };
 		C6DC63EF284552B200F2C81A /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
@@ -166,6 +184,104 @@
 			path = iSpringUITests;
 			sourceTree = "<group>";
 		};
+		C626D290284EA328007C3B3E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C6DC63F6284555CB00F2C81A /* ExploreView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C626D291284EA333007C3B3E /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		C626D293284EA40B007C3B3E /* Users */ = {
+			isa = PBXGroup;
+			children = (
+				C626D294284EA423007C3B3E /* UserRowView.swift */,
+			);
+			path = Users;
+			sourceTree = "<group>";
+		};
+		C626D296284EDEF5007C3B3E /* SideMenu */ = {
+			isa = PBXGroup;
+			children = (
+				C626D298284EDF36007C3B3E /* ViewModel */,
+				C626D297284EDF24007C3B3E /* Views */,
+			);
+			path = SideMenu;
+			sourceTree = "<group>";
+		};
+		C626D297284EDF24007C3B3E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C626D299284EDF46007C3B3E /* SideMenuView.swift */,
+				C626D29F284F0B15007C3B3E /* SideMenuOptionRowView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C626D298284EDF36007C3B3E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C626D29D284EDF72007C3B3E /* SideMenuViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C626D2A1284F8825007C3B3E /* UploadSpring */ = {
+			isa = PBXGroup;
+			children = (
+				C626D2A2284F882E007C3B3E /* ViewModels */,
+				C626D2A3284F8837007C3B3E /* Views */,
+			);
+			path = UploadSpring;
+			sourceTree = "<group>";
+		};
+		C626D2A2284F882E007C3B3E /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		C626D2A3284F8837007C3B3E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C626D2A4284F8871007C3B3E /* NewSpringView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C626D2A8284F971B007C3B3E /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				C626D2AA284F972D007C3B3E /* ViewModels */,
+				C626D2A9284F9726007C3B3E /* Views */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		C626D2A9284F9726007C3B3E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C626D2AB284F974E007C3B3E /* LoginView.swift */,
+				C626D2AD284F975C007C3B3E /* SignUpView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C626D2AA284F972D007C3B3E /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		C6A9DC422835562C006931BC /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -205,8 +321,11 @@
 		C6DC63E628451F5F00F2C81A /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				C6DC63FE2845C99C00F2C81A /* Profile */,
 				C6DC63E828451F6D00F2C81A /* Components */,
+				C626D2A8284F971B007C3B3E /* Authentication */,
+				C626D2A1284F8825007C3B3E /* UploadSpring */,
+				C6DC63FE2845C99C00F2C81A /* Profile */,
+				C626D296284EDEF5007C3B3E /* SideMenu */,
 				C6DC63F4284554A800F2C81A /* Explore */,
 				C6DC63F52845556000F2C81A /* SavedSprings */,
 				C6DC63F12845549B00F2C81A /* Messages */,
@@ -229,7 +348,10 @@
 		C6DC63E828451F6D00F2C81A /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				C626D293284EA40B007C3B3E /* Users */,
 				C6DC63EB284522F800F2C81A /* Springs */,
+				C626D2A6284F8BE3007C3B3E /* NewSpringTextArea.swift */,
+				C626D2AF284F9B4A007C3B3E /* RoundedShape.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -269,7 +391,8 @@
 		C6DC63F4284554A800F2C81A /* Explore */ = {
 			isa = PBXGroup;
 			children = (
-				C6DC63F6284555CB00F2C81A /* ExploreView.swift */,
+				C626D291284EA333007C3B3E /* ViewModels */,
+				C626D290284EA328007C3B3E /* Views */,
 			);
 			path = Explore;
 			sourceTree = "<group>";
@@ -450,14 +573,23 @@
 			files = (
 				C6DC63FB2845561700F2C81A /* MessagesView.swift in Sources */,
 				33A1479D2832A78600737AEA /* ContentView.swift in Sources */,
+				C626D2A0284F0B15007C3B3E /* SideMenuOptionRowView.swift in Sources */,
 				C6DC63EA284521F800F2C81A /* SpringFeedView.swift in Sources */,
 				C6DC63FD2845562400F2C81A /* NotificationsView.swift in Sources */,
+				C626D2A7284F8BE3007C3B3E /* NewSpringTextArea.swift in Sources */,
 				C6DC64022845C9C800F2C81A /* ProfileView.swift in Sources */,
 				C60786D42835F7F4009C7881 /* UserModel.swift in Sources */,
 				C60786D62835F82D009C7881 /* ViewModel.swift in Sources */,
+				C626D29E284EDF72007C3B3E /* SideMenuViewModel.swift in Sources */,
 				C6DC63F9284555E300F2C81A /* SavedSpringsView.swift in Sources */,
+				C626D29A284EDF47007C3B3E /* SideMenuView.swift in Sources */,
 				C6DC63F0284552B200F2C81A /* MainTabView.swift in Sources */,
+				C626D2A5284F8871007C3B3E /* NewSpringView.swift in Sources */,
 				C6DC63ED2845232400F2C81A /* SpringRowView.swift in Sources */,
+				C626D2B0284F9B4A007C3B3E /* RoundedShape.swift in Sources */,
+				C626D295284EA423007C3B3E /* UserRowView.swift in Sources */,
+				C626D2AE284F975C007C3B3E /* SignUpView.swift in Sources */,
+				C626D2AC284F974E007C3B3E /* LoginView.swift in Sources */,
 				C6DC63F7284555CB00F2C81A /* ExploreView.swift in Sources */,
 				33A1479B2832A78600737AEA /* iSpringApp.swift in Sources */,
 			);

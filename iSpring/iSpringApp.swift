@@ -20,14 +20,18 @@ struct iSpringApp: App {
     
     var body: some Scene {
         WindowGroup {
-            MainTabView()
+            NavigationView {
+                // this is the "root" view of the app itself
+                ContentView()
+            }
         }
     }
 }
 
 class AppDelegate: NSObject, UIApplicationDelegate {
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions
+                     launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         
         FirebaseApp.configure()
         return true

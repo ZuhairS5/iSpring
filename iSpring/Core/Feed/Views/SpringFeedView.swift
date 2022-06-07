@@ -8,20 +8,48 @@
 import SwiftUI
 
 struct SpringFeedView: View {
+    
+    @State private var showNewSpringView = false
+    
     var body: some View {
         
-        ScrollView {
-            LazyVStack {
+        ZStack(alignment: .bottomTrailing) {
+            ScrollView {
+                LazyVStack {
+                    ForEach(0 ... 20, id: \.self) { _ in
+                        SpringRowView()
+                            .padding()
+                    }
+                    
+                }
                 
-                ForEach(0 ... 20, id: \.self) { _ in
-                    SpringRowView()
+            }
+            
+            ZStack {
+                Circle()
+                    .fill(.white)
+                    .frame(width: 40, height: 40)
+                
+                Button {
+                    showNewSpringView.toggle()
+                } label: {
+                    Image(systemName: "plus.circle.fill")
+                        .resizable()
+                        .renderingMode(.template)
+                        .frame(width: 40, height: 40)
                         .padding()
+                }
+                .background(Color(.clear))
+                .foregroundColor(.black)
+                .clipShape(Circle())
+                .padding()
+                .fullScreenCover(isPresented: $showNewSpringView) {
+                    NewSpringView()
                 }
                 
             }
             
         }
-        
         
     }
 }
