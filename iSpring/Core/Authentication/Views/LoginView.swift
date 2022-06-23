@@ -9,14 +9,14 @@ import SwiftUI
 
 struct LoginView: View {
     
-    // "@State" keeps track of the variable, if the variables change they signal other pieces of code that use the state variable that the variable has changed
+    // "@State" keeps track of the variable, if the variables change they signal other pieces of code that use the state variable that the variable has changed, locally on the current view
     @State private var email = ""
     @State private var password = ""
+    @EnvironmentObject var viewModel: AuthViewModel
     
     var body: some View {
         // parent VStack
         VStack {
-            
             VStack(alignment: .leading) {
                 // the HStack with just a spacer helps stretch the VStack horizontally in order to fit the background
                 HStack{Spacer()}
@@ -31,9 +31,8 @@ struct LoginView: View {
 //            .clipShape(RoundedShape(corners: [.bottomLeft, .bottomRight]))
             
             VStack(spacing: 40) {
-                // text fields are different from labels, text fields also get input which can be stored (binded) to a corressponding variable using "$"
-                TextField("Email", text: $email)
-                TextField("Password", text: $password)
+                CustomTextField(imageName: "envelope", placeHolderText: "Email", isSecuredText: false, text: $email)
+                CustomTextField(imageName: "person.badge.key", placeHolderText: "Password", isSecuredText: true, text: $password)
             }
             .padding(.horizontal, 32)
             .padding(.top, 44)
@@ -55,7 +54,9 @@ struct LoginView: View {
             }
             
             Button {
-                print("Signed in!")
+                
+                viewModel.login(email: email, password: password)
+                
             } label: {
                 Text("Sign In")
                     .font(.headline)
@@ -72,15 +73,17 @@ struct LoginView: View {
             
             NavigationLink {
                 SignUpView()
+                    .navigationBarHidden(true)
             } label: {
                 Text("Don't have an account? Sign Up")
+                    .font(.caption)
+                    .fontWeight(.semibold)
+                    .foregroundColor(Color(.systemGreen))
             }
-            .padding(.vertical, 25)
+            .padding(.vertical, 32)
 
-            
         }
         .ignoresSafeArea()
-        
     }
 }
 

@@ -51,7 +51,6 @@ struct NewSpringView: View {
                 
                 NewSpringTextArea("Share your ideas...", text: $springText)
                 
-                
             }
             .padding()
             

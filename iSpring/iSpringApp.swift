@@ -11,31 +11,25 @@ import Firebase
 @main
 struct iSpringApp: App {
     
-    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    // initialize the first instance of viewModel
+    @StateObject var viewModel = AuthViewModel()
+    
     
     // required to connect to Firebase
-//    init() {
-//        FirebaseApp.configure()
-//    }
+    init() {
+        FirebaseApp.configure()
+        
+    }
     
     var body: some Scene {
         WindowGroup {
             NavigationView {
-                // this is the "root" view of the app itself
-                ContentView()
+                ContentView() // this is the "root" view of the app itself
             }
+            .environmentObject(viewModel) // supplies an initialized copy of viewModel to content view
         }
     }
+    
 }
 
-class AppDelegate: NSObject, UIApplicationDelegate {
-    
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions
-                     launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-        
-        FirebaseApp.configure()
-        return true
-        
-    }
-    
-}
+

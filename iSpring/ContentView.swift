@@ -9,16 +9,35 @@ import SwiftUI
 
 struct ContentView: View {
     
-//    // model variable keeps track of changes in the ViewModel object
-//    @ObservedObject var model = viewModel()
-//
-//    @State var email = ""
-//    @State var password = ""
-    
+    // state objects allow us to keep track of variable changes within the view locally
     @State private var showSideMenu = false
+    
+    // environment objects allow us to use a variable around the app without initializing repeatedly
+    @EnvironmentObject var viewModel: AuthViewModel
     
     var body: some View {
         
+        Group {
+            // if no user logged in or if logged out, prompt login screen
+            if viewModel.userSession == nil {
+                LoginView()
+            } else {
+                // user is logged in
+                mainInterface
+            }
+        }
+    }
+    
+}
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
+}
+
+extension ContentView {
+    var mainInterface: some View {
         ZStack(alignment: .topLeading) {
             MainTabView()
                 .navigationBarHidden(showSideMenu ? true : false)
@@ -59,17 +78,5 @@ struct ContentView: View {
         .onAppear {
             showSideMenu = false
         }
-        
-        
-    }
-    
-//    init() {
-//        model.getData()
-//    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
     }
 }
