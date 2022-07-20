@@ -31,8 +31,14 @@ struct LoginView: View {
 //            .clipShape(RoundedShape(corners: [.bottomLeft, .bottomRight]))
             
             VStack(spacing: 40) {
-                CustomTextField(imageName: "envelope", placeHolderText: "Email", isSecuredText: false, text: $email)
-                CustomTextField(imageName: "person.badge.key", placeHolderText: "Password", isSecuredText: true, text: $password)
+                CustomTextField(imageName: "envelope",
+                                placeHolderText: "Email",
+                                isSecuredText: false,
+                                text: $email)
+                CustomTextField(imageName: "person.badge.key",
+                                placeHolderText: "Password",
+                                isSecuredText: true,
+                                text: $password)
             }
             .padding(.horizontal, 32)
             .padding(.top, 44)

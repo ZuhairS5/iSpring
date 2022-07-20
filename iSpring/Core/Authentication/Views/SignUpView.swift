@@ -22,6 +22,11 @@ struct SignUpView: View {
             // parent VStack
             VStack {
                 
+                // Need to activate the navigation link when user is authenicated at the time of registration
+                NavigationLink(destination: ProfilePhotoSelectorView(),
+                               isActive: $viewModel.didAuthenticateUser,
+                               label: { })
+                
                 VStack(alignment: .leading) {
                     // the HStack with just a spacer helps stretch the VStack horizontally in order to fit the background
                     HStack{Spacer()}
@@ -48,8 +53,13 @@ struct SignUpView: View {
                 
                 VStack(alignment: .center) {
                     
+                    // Sign Up Button
                     Button {
-                        viewModel.register(email: email, password: password, fullName: name, username: username)
+                        viewModel.register(email: email,
+                                           password: password,
+                                           fullName: name,
+                                           username: username)
+                        
                     } label: {
                         Text("Sign up")
                             .font(.headline)
@@ -63,7 +73,7 @@ struct SignUpView: View {
                     .shadow(color: .gray.opacity(0.375), radius: 10, x: 0, y: 0)
                     
                     Button {
-                        print("Signed in!")
+                        print("Signed up with google!")
                     } label: {
                         Text("Sign Up Using Google")
                             .font(.headline)
@@ -77,7 +87,7 @@ struct SignUpView: View {
                     .shadow(color: .gray.opacity(0.375), radius: 10, x: 0, y: 0)
                 
                     Button {
-                        print("Signed in!")
+                        print("Signed up with facebook!")
                     } label: {
                         Text("Sign Up Using Facebook")
                             .font(.headline)

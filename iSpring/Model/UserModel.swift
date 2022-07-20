@@ -8,12 +8,15 @@
 import Foundation
 import FirebaseFirestoreSwift
 
+
+// this model creates a user object data model
 struct User: Identifiable, Decodable {
     
+    // information won't be retrieved if the decode fails
     @DocumentID var id: String?
-    let fullName: String
     let email: String
-    let username: String
+    let fullName: String
     let profileImageURL: String
+    let username: String
     
 }

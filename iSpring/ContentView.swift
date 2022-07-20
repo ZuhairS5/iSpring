@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct ContentView: View {
     
@@ -65,13 +66,18 @@ extension ContentView {
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
-                Button {
-                    withAnimation(.easeInOut) {
-                        showSideMenu.toggle()
+                if let user = viewModel.currentUser {
+                    Button {
+                        withAnimation(.easeInOut) {
+                            showSideMenu.toggle()
+                        }
+                    } label: {
+                        KFImage(URL(string: user.profileImageURL))
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 32, height: 32)
+                            .clipShape(Circle())
                     }
-                } label: {
-                    Circle()
-                        .frame(width: 32, height: 32)
                 }
             }
         }

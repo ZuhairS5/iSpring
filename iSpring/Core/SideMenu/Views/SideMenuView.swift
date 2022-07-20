@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct SideMenuView: View {
     
@@ -14,10 +15,15 @@ struct SideMenuView: View {
     var body: some View {
         
         if let user = viewModel.currentUser {
+            
             VStack(alignment: .leading) {
                 VStack(alignment: .leading, spacing: 10) {
                     HStack {
-                        Circle()
+                        // Kingfisher downloads the image from Firebase
+                        KFImage(URL(string: user.profileImageURL))
+                            .resizable()
+                            .scaledToFill()
+                            .clipShape(Circle())
                             .frame(width: 48, height: 48)
                         
                         VStack(alignment: .leading, spacing: 4) {
@@ -25,7 +31,7 @@ struct SideMenuView: View {
                                 .font(.headline)
                                 .foregroundColor(.black)
                                 .bold()
-                            Text(user.username)
+                            Text("@\(user.username)")
                                 .font(.subheadline)
                                 .foregroundColor(.gray)
                             

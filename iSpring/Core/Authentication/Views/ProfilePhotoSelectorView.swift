@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct ProfilePhotoSelectorView: View {
     
@@ -50,6 +51,7 @@ struct ProfilePhotoSelectorView: View {
             }
             .padding(.top, 44)
             
+            // display the continue button when an image loads
             if let selectedImage = selectedImage {
                 Button {
                     viewModel.uploadProfileImage(selectedImage)
@@ -73,6 +75,7 @@ struct ProfilePhotoSelectorView: View {
     }
     
     func loadImage() {
+        // selectedImage is the user selected image from photos
         guard let selectedImage = selectedImage else { return }
         profileImage = Image(uiImage: selectedImage)
     }
@@ -84,7 +87,7 @@ private struct ProfileImageModifier: ViewModifier {
         content
             .scaledToFill()
             .foregroundColor(Color(.systemGreen))
-            .frame(width: 180, height: 180)
+            .frame(width: 150, height: 150)
     }
 }
 
