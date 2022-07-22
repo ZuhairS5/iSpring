@@ -76,7 +76,8 @@ extension ContentView {
                             .resizable()
                             .scaledToFill()
                             .frame(width: 32, height: 32)
-                            .clipShape(Circle())
+                            .clipShape(Circle()
+                            )
                     }
                 }
             }

@@ -69,7 +69,8 @@ struct SideMenuView: View {
                     
                     if option == .profileOption {
                         NavigationLink {
-                            ProfileView()
+                            // pass the current user into the profile page
+                            ProfileView(user: user)
                         } label: {
                             SideMenuOptionRowView(viewModel: option)
                         }

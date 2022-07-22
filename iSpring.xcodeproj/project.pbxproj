@@ -15,6 +15,14 @@
 		33A147B62832A78D00737AEA /* iSpringUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A147B52832A78D00737AEA /* iSpringUITests.swift */; };
 		33A147B82832A78D00737AEA /* iSpringUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A147B72832A78D00737AEA /* iSpringUITestsLaunchTests.swift */; };
 		C62097472887BD2500076B4B /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = C62097462887BD2500076B4B /* Kingfisher */; };
+		C62097492888839500076B4B /* ExploreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62097482888839500076B4B /* ExploreViewModel.swift */; };
+		C620974B2888896600076B4B /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C620974A2888896600076B4B /* SearchBar.swift */; };
+		C620974D2888902900076B4B /* SpringService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C620974C2888902900076B4B /* SpringService.swift */; };
+		C620974F2888983700076B4B /* UploadSpringViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C620974E2888983700076B4B /* UploadSpringViewModel.swift */; };
+		C620975128889F7400076B4B /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C620975028889F7400076B4B /* FeedViewModel.swift */; };
+		C62097552888A07700076B4B /* SpringModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62097542888A07700076B4B /* SpringModel.swift */; };
+		C62097572888AFDA00076B4B /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62097562888AFDA00076B4B /* ProfileViewModel.swift */; };
+		C620975B288A516600076B4B /* SpringRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C620975A288A516600076B4B /* SpringRowViewModel.swift */; };
 		C626D295284EA423007C3B3E /* UserRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C626D294284EA423007C3B3E /* UserRowView.swift */; };
 		C626D29A284EDF47007C3B3E /* SideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C626D299284EDF46007C3B3E /* SideMenuView.swift */; };
 		C626D29E284EDF72007C3B3E /* SideMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C626D29D284EDF72007C3B3E /* SideMenuViewModel.swift */; };
@@ -78,6 +86,14 @@
 		33A147B12832A78D00737AEA /* iSpringUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iSpringUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		33A147B52832A78D00737AEA /* iSpringUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iSpringUITests.swift; sourceTree = "<group>"; };
 		33A147B72832A78D00737AEA /* iSpringUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iSpringUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		C62097482888839500076B4B /* ExploreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewModel.swift; sourceTree = "<group>"; };
+		C620974A2888896600076B4B /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		C620974C2888902900076B4B /* SpringService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpringService.swift; sourceTree = "<group>"; };
+		C620974E2888983700076B4B /* UploadSpringViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadSpringViewModel.swift; sourceTree = "<group>"; };
+		C620975028889F7400076B4B /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
+		C62097542888A07700076B4B /* SpringModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpringModel.swift; sourceTree = "<group>"; };
+		C62097562888AFDA00076B4B /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		C620975A288A516600076B4B /* SpringRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpringRowViewModel.swift; sourceTree = "<group>"; };
 		C626D294284EA423007C3B3E /* UserRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRowView.swift; sourceTree = "<group>"; };
 		C626D299284EDF46007C3B3E /* SideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuView.swift; sourceTree = "<group>"; };
 		C626D29D284EDF72007C3B3E /* SideMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewModel.swift; sourceTree = "<group>"; };
@@ -200,6 +216,22 @@
 			path = iSpringUITests;
 			sourceTree = "<group>";
 		};
+		C6209758288A50E200076B4B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C6DC63EC2845232400F2C81A /* SpringRowView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C6209759288A50E600076B4B /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C620975A288A516600076B4B /* SpringRowViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		C626D290284EA328007C3B3E /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -211,6 +243,7 @@
 		C626D291284EA333007C3B3E /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				C62097482888839500076B4B /* ExploreViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -261,6 +294,7 @@
 		C626D2A2284F882E007C3B3E /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				C620974E2888983700076B4B /* UploadSpringViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -318,6 +352,7 @@
 		C6A9DC422835562C006931BC /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				C620975028889F7400076B4B /* FeedViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -341,6 +376,7 @@
 			isa = PBXGroup;
 			children = (
 				C62C19AD2852799E00FE438F /* UserModel.swift */,
+				C62097542888A07700076B4B /* SpringModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -350,6 +386,7 @@
 			children = (
 				C626D2C428524DB6007C3B3E /* ImageUploader.swift */,
 				C62C19AB285276F000FE438F /* UserService.swift */,
+				C620974C2888902900076B4B /* SpringService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -389,6 +426,7 @@
 				C626D2A6284F8BE3007C3B3E /* NewSpringTextArea.swift */,
 				C626D2AF284F9B4A007C3B3E /* RoundedShape.swift */,
 				C626D2B328501C4B007C3B3E /* CustomTextField.swift */,
+				C620974A2888896600076B4B /* SearchBar.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -396,7 +434,8 @@
 		C6DC63EB284522F800F2C81A /* Springs */ = {
 			isa = PBXGroup;
 			children = (
-				C6DC63EC2845232400F2C81A /* SpringRowView.swift */,
+				C6209759288A50E600076B4B /* ViewModel */,
+				C6209758288A50E200076B4B /* Views */,
 			);
 			path = Springs;
 			sourceTree = "<group>";
@@ -462,6 +501,7 @@
 		C6DC64002845C9B300F2C81A /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				C62097562888AFDA00076B4B /* ProfileViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -612,30 +652,38 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C620974D2888902900076B4B /* SpringService.swift in Sources */,
 				C6DC63FB2845561700F2C81A /* MessagesView.swift in Sources */,
 				C62C19AC285276F000FE438F /* UserService.swift in Sources */,
 				33A1479D2832A78600737AEA /* ContentView.swift in Sources */,
 				C626D2A0284F0B15007C3B3E /* SideMenuOptionRowView.swift in Sources */,
 				C6DC63EA284521F800F2C81A /* SpringFeedView.swift in Sources */,
 				C626D2BE285237E2007C3B3E /* ProfilePhotoSelectorView.swift in Sources */,
+				C620975128889F7400076B4B /* FeedViewModel.swift in Sources */,
 				C626D2C528524DB6007C3B3E /* ImageUploader.swift in Sources */,
 				C6DC63FD2845562400F2C81A /* NotificationsView.swift in Sources */,
 				C626D2A7284F8BE3007C3B3E /* NewSpringTextArea.swift in Sources */,
 				C6DC64022845C9C800F2C81A /* ProfileView.swift in Sources */,
 				C626D29E284EDF72007C3B3E /* SideMenuViewModel.swift in Sources */,
 				C6DC63F9284555E300F2C81A /* SavedSpringsView.swift in Sources */,
+				C620975B288A516600076B4B /* SpringRowViewModel.swift in Sources */,
 				C626D29A284EDF47007C3B3E /* SideMenuView.swift in Sources */,
 				C626D2B428501C4B007C3B3E /* CustomTextField.swift in Sources */,
+				C62097552888A07700076B4B /* SpringModel.swift in Sources */,
 				C6DC63F0284552B200F2C81A /* MainTabView.swift in Sources */,
+				C62097572888AFDA00076B4B /* ProfileViewModel.swift in Sources */,
 				C626D2C3285242E0007C3B3E /* ImagePicker.swift in Sources */,
 				C626D2A5284F8871007C3B3E /* NewSpringView.swift in Sources */,
 				C6DC63ED2845232400F2C81A /* SpringRowView.swift in Sources */,
 				C62C19AE2852799E00FE438F /* UserModel.swift in Sources */,
+				C620974F2888983700076B4B /* UploadSpringViewModel.swift in Sources */,
 				C626D2B0284F9B4A007C3B3E /* RoundedShape.swift in Sources */,
 				C626D2BC2850472E007C3B3E /* AuthViewModel.swift in Sources */,
+				C620974B2888896600076B4B /* SearchBar.swift in Sources */,
 				C626D295284EA423007C3B3E /* UserRowView.swift in Sources */,
 				C626D2AE284F975C007C3B3E /* SignUpView.swift in Sources */,
 				C626D2AC284F974E007C3B3E /* LoginView.swift in Sources */,
+				C62097492888839500076B4B /* ExploreViewModel.swift in Sources */,
 				C6DC63F7284555CB00F2C81A /* ExploreView.swift in Sources */,
 				33A1479B2832A78600737AEA /* iSpringApp.swift in Sources */,
 			);

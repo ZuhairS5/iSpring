@@ -10,7 +10,7 @@ import SwiftUI
 struct MainTabView: View {
     
     // when the user clicks on an icon, the index updates to the corressponding tab instructing the view to change respectively
-    @State private var currentTabIndex = 0
+    @State private var currentTabIndex = 2
     
     var body: some View {
         TabView(selection: $currentTabIndex) {

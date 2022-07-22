@@ -6,12 +6,15 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct NewSpringView: View {
     
     @State private var springText = ""
     // an environment variable that can recognize the presentation state of the app
     @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var viewModel: AuthViewModel
+    @ObservedObject var springViewModel = UploadSpringViewModel()
     
     var body: some View {
         VStack {
@@ -32,7 +35,8 @@ struct NewSpringView: View {
                 // send button publishes the spring onto the platform
                 Button {
                     // the send button
-                    print("sent")
+                    springViewModel.uploadSpring(withCaption: springText)
+                    
                 } label: {
                     Text("Send")
                         .bold()
@@ -46,8 +50,20 @@ struct NewSpringView: View {
             }
             
             HStack(alignment: .top) {
-                Circle()
-                    .frame(width: 64, height: 64)
+                if let user = viewModel.currentUser {
+                    
+                    KFImage(URL(string: user.profileImageURL))
+                        .resizable()
+                        .scaledToFill()
+                        .clipShape(Circle())
+                        .frame(width: 64, height: 64)
+
+                } else {
+                    
+                    Circle()
+                        .frame(width: 64, height: 64)
+                    
+                }
                 
                 NewSpringTextArea("Share your ideas...", text: $springText)
                 
@@ -56,7 +72,11 @@ struct NewSpringView: View {
             
             Spacer()
         }
-        
+        .onReceive(springViewModel.$didUploadSpring) { springUploaded in
+            if springUploaded {
+                presentationMode.wrappedValue.dismiss()
+            }
+        } // dismisses the sheet when the spring is uploaded successfully 
     }
 }
 

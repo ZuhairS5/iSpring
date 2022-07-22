@@ -8,23 +8,30 @@
 import SwiftUI
 
 struct ExploreView: View {
+    
+    @ObservedObject var exploreViewModel = ExploreViewModel()
+    
     var body: some View {
         
-        NavigationView {
+        VStack {
+            
+            SearchBar(text: $exploreViewModel.searchText)
+                .padding()
+            
             ScrollView {
                 LazyVStack {
-                    ForEach(0 ... 10, id: \.self) { _ in
+                    ForEach(exploreViewModel.searchableUsers) { user in
                         NavigationLink {
-                            ProfileView()
+                            ProfileView(user: user)
                         } label: {
-                            UserRowView()
+                            UserRowView(user: user)
                         }
                     }
                 }
             }
-            .navigationTitle("Explore")
-            .navigationBarTitleDisplayMode(.inline)
         }
+        .navigationTitle("Explore")
+        .navigationBarTitleDisplayMode(.inline)
         
     }
 }

@@ -10,14 +10,15 @@ import SwiftUI
 struct SpringFeedView: View {
     
     @State private var showNewSpringView = false
+    @ObservedObject var springFeedViewModel = SpringFeedViewModel()
     
     var body: some View {
         
         ZStack(alignment: .bottomTrailing) {
             ScrollView {
                 LazyVStack {
-                    ForEach(0 ... 20, id: \.self) { _ in
-                        SpringRowView()
+                    ForEach(springFeedViewModel.springs) { spring in
+                        SpringRowView(spring: spring)
                             .padding()
                     }
                     
@@ -48,6 +49,7 @@ struct SpringFeedView: View {
                 }
                 
             }
+            .navigationBarTitleDisplayMode(.inline)
             
         }
         

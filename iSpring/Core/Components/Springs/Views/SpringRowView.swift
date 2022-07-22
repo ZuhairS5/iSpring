@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 /*
  
@@ -15,40 +16,55 @@ import SwiftUI
 
 
 struct SpringRowView: View {
+    @ObservedObject var springRowViewModel : SpringRowViewModel
+    
+    init(spring: Spring) {
+        
+        self.springRowViewModel = SpringRowViewModel(spring: spring)
+        
+    }
+    
     var body: some View {
         
         VStack(alignment: .leading) {
-            // profile image, username and spring text
-            HStack(alignment: .top, spacing: 12) {
-                // this circle reprensents the profile picture
-                Circle()
-                    .frame(width: 56, height: 56)
-                    .foregroundColor(Color.green)
+            
+            if let user = springRowViewModel.spring.user {
                 
-                // user info and spring caption
-                VStack(alignment: .leading, spacing: 5) {
-                    Text("@Zuhair S")
-                        .font(.headline)
-                        .fontWeight(.heavy)
-                        .multilineTextAlignment(.leading)
+                // profile image, username and spring text
+                HStack(alignment: .top, spacing: 12) {
+                    // this circle reprensents the profile picture
+                    KFImage(URL(string: user.profileImageURL))
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 56, height: 56)
+                        .clipShape(Circle())
                     
-                    Text("May 30, 2022")
-                        .font(.caption)
-                        .foregroundColor(Color.gray)
-                    
-                    Text("Arm day is the best day")
-                        .font(Font.body)
-                        .multilineTextAlignment(.leading)
+                    // user info and spring caption
+                    VStack(alignment: .leading, spacing: 5) {
+                        Text("@\(user.username)")
+                            .font(.headline)
+                            .fontWeight(.heavy)
+                            .multilineTextAlignment(.leading)
+                        
+                        Text("May 30, 2022")
+                            .font(.caption)
+                            .foregroundColor(Color.gray)
+                        
+                        Text(springRowViewModel.spring.content)
+                            .font(Font.body)
+                            .multilineTextAlignment(.leading)
+                        
+                    }
+                    VStack(alignment: .center, spacing: 2) {
+                        
+                        Image(systemName: "timer")
+                        Text("30D")
+                        
+                    }
+                    .padding(.leading)
+                    .padding(.leading)
                     
                 }
-                VStack(alignment: .center, spacing: 2) {
-                    
-                    Image(systemName: "timer")
-                    Text("30D")
-                    
-                }
-                .padding(.leading)
-                .padding(.leading)
                 
             }
             
@@ -91,19 +107,20 @@ struct SpringRowView: View {
                 
                 Spacer()
                 
-                // like button
+                // upvote button
                 Button {
-                    // some action here..
+                    springRowViewModel.likeSpring()
                 } label: {
                     VStack(alignment: .center, spacing: 2) {
-                        Image(systemName: "hand.thumbsup")
+                        Image(systemName: springRowViewModel.spring.didLike ?? false ? "hand.thumbsup.fill" : "hand.thumbsup")
+                            .foregroundColor(springRowViewModel.spring.didLike ?? false ? .green : .green)
                         Text("31")
                     }
                 }
 
                 Spacer()
                 
-                // dislike button
+                // downvote button
                 Button {
                     // some action here..
                 } label: {
@@ -124,8 +141,8 @@ struct SpringRowView: View {
     
 }
 
-struct SpringRowView_Previews: PreviewProvider {
-    static var previews: some View {
-        SpringRowView()
-    }
-}
+//struct SpringRowView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SpringRowView()
+//    }
+//}

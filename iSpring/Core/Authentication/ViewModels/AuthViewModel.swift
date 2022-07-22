@@ -22,6 +22,7 @@ class AuthViewModel: ObservableObject {
     
     init() {
         // initialize the user session
+//        self.userSession = nil
         self.userSession = Auth.auth().currentUser
         print("DEBUG: User Session is \(self.userSession?.uid)")
         self.fetchUser()
@@ -36,7 +37,7 @@ class AuthViewModel: ObservableObject {
             guard let user = result?.user else { return }
             
             self.userSession = user
-            
+            self.fetchUser()
             print("DEBUG: Successfully logged in the user \(self.userSession?.uid)")
         }
     }
@@ -88,6 +89,7 @@ class AuthViewModel: ObservableObject {
                 .document(uuid)
                 .updateData(["profileImageURL": profileImageURL]) { _ in
                     self.userSession = self.tempUserSession // updating the userSession pings all reliant objects to refresh the views
+                    self.fetchUser() // override the new user from previous user details
                 }
 
         }
