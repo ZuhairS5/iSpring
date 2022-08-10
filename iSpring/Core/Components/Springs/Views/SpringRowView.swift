@@ -16,13 +16,40 @@ import Kingfisher
 
 
 struct SpringRowView: View {
+    
     @ObservedObject var springRowViewModel : SpringRowViewModel
+    @State var timeRemaining: String
     
     init(spring: Spring) {
         
         self.springRowViewModel = SpringRowViewModel(spring: spring)
+        timeRemaining = String("--:--")
         
     }
+    
+    func timeToExpiry(_ expiryTime: Date) -> String {
+
+        let timeLeft = Calendar.current.dateComponents([.hour, .minute, .second], from: Date(), to: expiryTime)
+        
+        if timeLeft.hour == 0 && timeLeft.minute == 0 && timeLeft.second ?? 0 > 0 {
+            
+            return String(format: "%02i", timeLeft.second!)
+            
+        } else if timeLeft.hour ?? 0 <= 0 && timeLeft.minute ?? 0 <= 0 && timeLeft.second ?? 0 <= 0 {
+            
+            return String(format: "EXPIRED", timeLeft.second!)
+
+        } else {
+            
+            return String(format: "%02i:%02i", timeLeft.hour!, timeLeft.minute!)
+            
+        }
+
+    }
+    
+//    @State var timeRemaining = String("--:--")
+    
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
         
@@ -46,7 +73,7 @@ struct SpringRowView: View {
                             .fontWeight(.heavy)
                             .multilineTextAlignment(.leading)
                         
-                        Text("May 30, 2022")
+                        Text("\(Date(timeIntervalSince1970: TimeInterval(springRowViewModel.spring.timestamp.seconds)).formatted(.dateTime.month(.wide).day().year(.extended())))")
                             .font(.caption)
                             .foregroundColor(Color.gray)
                         
@@ -58,7 +85,10 @@ struct SpringRowView: View {
                     VStack(alignment: .center, spacing: 2) {
                         
                         Image(systemName: "timer")
-                        Text("30D")
+                        Text(timeRemaining)
+                            .onReceive(timer) { _ in
+                                timeRemaining = timeToExpiry(springRowViewModel.spring.postExpiry)
+                            }
                         
                     }
                     .padding(.leading)
@@ -70,6 +100,8 @@ struct SpringRowView: View {
             
             // action buttons
             HStack {
+                
+                let spring = springRowViewModel.spring
                 
                 // comment button
                 Button {
@@ -109,12 +141,12 @@ struct SpringRowView: View {
                 
                 // upvote button
                 Button {
-                    springRowViewModel.likeSpring()
+                    springRowViewModel.upvoteSpring()
                 } label: {
                     VStack(alignment: .center, spacing: 2) {
-                        Image(systemName: springRowViewModel.spring.didLike ?? false ? "hand.thumbsup.fill" : "hand.thumbsup")
-                            .foregroundColor(springRowViewModel.spring.didLike ?? false ? .green : .green)
-                        Text("31")
+                        Image(systemName: springRowViewModel.spring.didUpvote ?? false ? "hand.thumbsup.fill" : "hand.thumbsup")
+                            .foregroundColor(.green)
+                        Text("\(spring.upvotes)")
                     }
                 }
 
@@ -122,11 +154,12 @@ struct SpringRowView: View {
                 
                 // downvote button
                 Button {
-                    // some action here..
+                    springRowViewModel.downvoteSpring()
                 } label: {
                     VStack(alignment: .center, spacing: 2) {
-                        Image(systemName: "hand.thumbsdown")
-                        Text("3")
+                        Image(systemName: springRowViewModel.spring.didDownvote ?? false ? "hand.thumbsdown.fill" : "hand.thumbsdown")
+                            .foregroundColor(.red)
+                        Text("\(spring.downvotes)")
                     }
                 }
                 
@@ -140,6 +173,7 @@ struct SpringRowView: View {
     }
     
 }
+
 
 //struct SpringRowView_Previews: PreviewProvider {
 //    static var previews: some View {

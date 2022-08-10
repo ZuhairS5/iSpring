@@ -14,21 +14,46 @@ class SpringRowViewModel: ObservableObject {
     
     init(spring: Spring) {
         self.spring = spring
-        checkIfUserLikedSpring()
+        checkIfUserUpvotedSpring()
+        checkIfUserDownvotedSpring()
     }
     
-    func likeSpring() {
-        service.likeSpring(spring) {
-            self.spring.didLike = true
+    func upvoteSpring() {
+        service.upvoteSpring(spring, isUpvoted: spring.didUpvote ?? false) {
+            self.spring.didUpvote?.toggle()
         }
     }
     
-    func checkIfUserLikedSpring() {
-        service.checkIfUserLikedSpring(spring: spring) { didLike in
-            if didLike {
-                self.spring.didLike = true
+    func downvoteSpring() {
+        
+        service.downvote(spring, isDownvoted: spring.didDownvote ?? false) {
+            self.spring.didDownvote?.toggle()
+        }
+        
+    }
+    
+    func checkIfUserUpvotedSpring() {
+        service.checkIfUserUpvotedSpring(spring: spring) { didUpvote in
+            if didUpvote {
+                self.spring.didUpvote = true
+            } else {
+                self.spring.didUpvote = false
             }
         }
     }
+    
+    func checkIfUserDownvotedSpring() {
+        
+        service.checkIfUserDownvotedSpring(spring: spring) { didDownvote in
+            if didDownvote {
+                self.spring.didDownvote = true
+            } else {
+                self.spring.didDownvote = false
+            }
+        }
+        
+    }
+    
+    
     
 }

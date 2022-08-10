@@ -16,13 +16,16 @@ struct SpringService {
         guard let uuid = Auth.auth().currentUser?.uid else { return }
         
         let timestamp = Timestamp(date: Date())
+        let postExpiry = Date().advanced(by: 10800)
+        
+        
         let data = ["uuid": uuid,
                     "content": content,
                     "replies": 0,
                     "saves": 0,
                     "upvotes": 0,
                     "downvotes": 0,
-                    "postExpiry": timestamp,
+                    "postExpiry": postExpiry,
                     "timestamp": timestamp] as [String : Any]
         
         Firestore.firestore().collection("springs").document() // create a new collection within iSpring that stores the springs
@@ -69,36 +72,96 @@ struct SpringService {
         
     }
     
-    func likeSpring(_ spring: Spring, completion: @escaping() -> Void) {
+    func upvoteSpring(_ spring: Spring, isUpvoted: Bool, completion: @escaping() -> Void) {
         
         guard let uuid = Auth.auth().currentUser?.uid else { return }
         
         // collection within each user document that records the id's of the posts they liked
         let userLikesRef = Firestore.firestore().collection("users")
             .document(uuid)
-            .collection("user-likes")
+            .collection("user-upvotes")
         
         // the id of the post that was liked
         guard let springID = spring.id else { return }
+        guard spring.upvotes >= 0 else { return }
         
         // retrieve the post based on id
+        
         Firestore.firestore().collection("springs").document(springID)
             .updateData(["upvotes": spring.upvotes + 1]) { _ in
                 userLikesRef.document(springID).setData([:]) { _ in
                     completion()
-                    print("DEBUG: Spring was liked and now the UI must be updated")
+                    print("DEBUG: Spring upvoted")
+                }
+            }
+        
+//        if isUpvoted {
+//
+//            Firestore.firestore().collection("springs").document(springID)
+//                .updateData(["upvotes": spring.upvotes - 1]) { _ in
+//                    userLikesRef.document(springID).delete { _ in
+//                        completion()
+//                        print("DEBUG: Spring upvote removed")
+//                    }
+//                }
+//
+//        } else {
+//
+//            Firestore.firestore().collection("springs").document(springID)
+//                .updateData(["upvotes": spring.upvotes + 1]) { _ in
+//                    userLikesRef.document(springID).setData([:]) { _ in
+//                        completion()
+//                        print("DEBUG: Spring upvoted")
+//                    }
+//                }
+//
+//        }
+        
+    }
+    
+    func downvote(_ spring: Spring, isDownvoted: Bool, completion: @escaping() -> Void) {
+        
+        guard let uuid = Auth.auth().currentUser?.uid else { return }
+        
+        // collection within each user document that records the id's of the posts they liked
+        let userLikesRef = Firestore.firestore().collection("users")
+            .document(uuid)
+            .collection("user-downvotes")
+        
+        // the id of the post that was liked
+        guard let springID = spring.id else { return }
+        guard spring.downvotes >= 0 else { return }
+        // retrieve the post based on id
+        Firestore.firestore().collection("springs").document(springID)
+            .updateData(["downvotes": isDownvoted ? spring.downvotes - 1 : spring.downvotes + 1]) { _ in
+                userLikesRef.document(springID).setData([:]) { _ in
+                    completion()
+                    print("DEBUG: Spring was disliked and now the UI must be updated")
                 }
             }
         
     }
     
-    func checkIfUserLikedSpring(spring: Spring, completion: @escaping(Bool) -> Void) {
+    func checkIfUserUpvotedSpring(spring: Spring, completion: @escaping(Bool) -> Void) {
         
         // check user likes collection and see if the post id is in the list
         guard let uuid = Auth.auth().currentUser?.uid else { return }
         guard let springID = spring.id else { return }
         
-        Firestore.firestore().collection("users").document(uuid).collection("user-likes").document(springID).getDocument { snapshot, _ in
+        Firestore.firestore().collection("users").document(uuid).collection("user-upvotes").document(springID).getDocument { snapshot, _ in
+            guard let snapshot = snapshot else { return }
+            completion(snapshot.exists)
+        }
+        
+    }
+    
+    func checkIfUserDownvotedSpring(spring: Spring, completion: @escaping(Bool) -> Void) {
+        
+        // check user likes collection and see if the post id is in the list
+        guard let uuid = Auth.auth().currentUser?.uid else { return }
+        guard let springID = spring.id else { return }
+        
+        Firestore.firestore().collection("users").document(uuid).collection("user-downvotes").document(springID).getDocument { snapshot, _ in
             guard let snapshot = snapshot else { return }
             completion(snapshot.exists)
         }

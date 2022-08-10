@@ -13,7 +13,7 @@ struct Spring: Identifiable, Decodable {
     @DocumentID var id: String?
     let content: String
     var downvotes: Int
-    var postExpiry: Timestamp // timestamp is a firebase property
+    var postExpiry: Date
     var replies: Int
     var saves: Int
     let timestamp: Timestamp
@@ -24,6 +24,7 @@ struct Spring: Identifiable, Decodable {
     // cannot be initialized with a value without optional declaration and therefore
     // must be defined by their respective data types
     var user: User?
-    var didLike: Bool? = false
+    var didUpvote: Bool? = false
+    var didDownvote: Bool? = false
     
 }
