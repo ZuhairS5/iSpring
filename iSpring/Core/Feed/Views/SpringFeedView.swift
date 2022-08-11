@@ -17,9 +17,11 @@ struct SpringFeedView: View {
         ZStack(alignment: .bottomTrailing) {
             ScrollView {
                 LazyVStack {
+                    
                     ForEach(springFeedViewModel.springs) { spring in
                         SpringRowView(spring: spring)
                             .padding()
+                        
                     }
                     
                 }
@@ -54,6 +56,7 @@ struct SpringFeedView: View {
         }
         
     }
+    
 }
 
 struct SpringFeedView_Previews: PreviewProvider {

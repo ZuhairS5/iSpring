@@ -39,7 +39,6 @@ struct SpringService {
                 
                 completion(true)
                 print("DEBUG: Successfully uploaded new spring.")
-                    
                 
             }
     }
@@ -48,7 +47,7 @@ struct SpringService {
     func fetchSprings(completion: @escaping([Spring]) -> Void) {
         
         Firestore.firestore().collection("springs").order(by: "timestamp", descending: true)
-            .getDocuments { snapshot, _ in
+            .addSnapshotListener { snapshot, _ in
             guard let documents = snapshot?.documents else { return }
             let springs = documents.compactMap({ try? $0.data(as: Spring.self) })
             completion(springs)
@@ -57,21 +56,40 @@ struct SpringService {
 //            }
         }
         
+//        Firestore.firestore().collection("springs").order(by: "timestamp", descending: true)
+//            .getDocuments { snapshot, _ in
+//            guard let documents = snapshot?.documents else { return }
+//            let springs = documents.compactMap({ try? $0.data(as: Spring.self) })
+//            completion(springs)
+////            documents.forEach { document in
+////                print(document.data())
+////            }
+//        }
+        
     }
     
     // used to get all the springs filtered by a specific user (profile view)
     func fetchSprings(forUUID uuid: String, completion: @escaping([Spring]) -> Void) {
         
         Firestore.firestore().collection("springs").whereField("uuid", isEqualTo: uuid)
-            .getDocuments { snapshot, _ in
+            .addSnapshotListener { snapshot, _ in
             guard let documents = snapshot?.documents else { return }
             let springs = documents.compactMap({ try? $0.data(as: Spring.self) })
             completion(springs.sorted(by: {$0.timestamp.dateValue() > $1.timestamp.dateValue()} ))
 
         }
         
+//        Firestore.firestore().collection("springs").whereField("uuid", isEqualTo: uuid)
+//            .getDocuments { snapshot, _ in
+//            guard let documents = snapshot?.documents else { return }
+//            let springs = documents.compactMap({ try? $0.data(as: Spring.self) })
+//            completion(springs.sorted(by: {$0.timestamp.dateValue() > $1.timestamp.dateValue()} ))
+//
+//        }
+        
     }
     
+    // upvote the spring backend, let view model know when completed
     func upvoteSpring(_ spring: Spring, isUpvoted: Bool, completion: @escaping() -> Void) {
         
         guard let uuid = Auth.auth().currentUser?.uid else { return }
@@ -95,31 +113,11 @@ struct SpringService {
                 }
             }
         
-//        if isUpvoted {
-//
-//            Firestore.firestore().collection("springs").document(springID)
-//                .updateData(["upvotes": spring.upvotes - 1]) { _ in
-//                    userLikesRef.document(springID).delete { _ in
-//                        completion()
-//                        print("DEBUG: Spring upvote removed")
-//                    }
-//                }
-//
-//        } else {
-//
-//            Firestore.firestore().collection("springs").document(springID)
-//                .updateData(["upvotes": spring.upvotes + 1]) { _ in
-//                    userLikesRef.document(springID).setData([:]) { _ in
-//                        completion()
-//                        print("DEBUG: Spring upvoted")
-//                    }
-//                }
-//
-//        }
         
     }
     
-    func downvote(_ spring: Spring, isDownvoted: Bool, completion: @escaping() -> Void) {
+    // downvote the spring in the backend, let the view model know when completed
+    func downvoteSpring(_ spring: Spring, isDownvoted: Bool, completion: @escaping() -> Void) {
         
         guard let uuid = Auth.auth().currentUser?.uid else { return }
         
@@ -167,5 +165,46 @@ struct SpringService {
         }
         
     }
+    
+    // this function attaches a comment to the spring and lets the view model when comment is posted
+    // works as if iSpring uploads a comment under the collection of a spring
+    func uploadComment(spring: Spring, comment: String, completion: @escaping() -> Void) {
+        
+        // get the id of the spring
+        guard let springID = spring.id else { return }
+        
+        // get the UUID of the current user
+        guard let uuid = Auth.auth().currentUser?.uid else { return }
+        
+        // get current time stamp
+        let timestamp = Timestamp(date: Date())
+        
+        // organize data as a dictionary (key-value pair)
+        let commentData = ["author": uuid,
+                           "timestamp": timestamp,
+                           "comment": comment] as [String: Any]
+        
+        // upload the comment to the spring under comment collection of the spring
+        Firestore.firestore().collection("springs").document(springID).setData(commentData) { error in
+            
+            if let error = error {
+                print("DEBUG: Failed to upload comment to spring")
+                return
+            }
+            
+            // increment the number of comments by one
+            Firestore.firestore().collection("springs").document(springID)
+                .updateData(["replies": spring.replies + 1]) { _ in
+                    
+                    completion()
+                    print("DEBUG: Successfully uploaded the comment")
+                    
+                }
+            
+        }
+        
+    }
+    
+    
     
 }

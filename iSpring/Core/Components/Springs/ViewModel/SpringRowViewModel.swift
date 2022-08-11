@@ -19,14 +19,18 @@ class SpringRowViewModel: ObservableObject {
     }
     
     func upvoteSpring() {
-        service.upvoteSpring(spring, isUpvoted: spring.didUpvote ?? false) {
-            self.spring.didUpvote?.toggle()
+        if spring.didUpvote ?? false {
+            
+            service.upvoteSpring(spring, isUpvoted: spring.didUpvote ?? false) {
+                self.spring.didUpvote?.toggle()
+            }
+            
         }
     }
     
     func downvoteSpring() {
         
-        service.downvote(spring, isDownvoted: spring.didDownvote ?? false) {
+        service.downvoteSpring(spring, isDownvoted: spring.didDownvote ?? false) {
             self.spring.didDownvote?.toggle()
         }
         

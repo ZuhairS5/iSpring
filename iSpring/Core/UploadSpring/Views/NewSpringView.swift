@@ -14,7 +14,7 @@ struct NewSpringView: View {
     // an environment variable that can recognize the presentation state of the app
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var viewModel: AuthViewModel
-    @ObservedObject var springViewModel = UploadSpringViewModel()
+    @ObservedObject var uploadSpringViewModel = UploadSpringViewModel()
     
     var body: some View {
         VStack {
@@ -35,7 +35,7 @@ struct NewSpringView: View {
                 // send button publishes the spring onto the platform
                 Button {
                     // the send button
-                    springViewModel.uploadSpring(withCaption: springText)
+                    uploadSpringViewModel.uploadSpring(withCaption: springText)
                     
                 } label: {
                     Text("Send")
@@ -72,7 +72,7 @@ struct NewSpringView: View {
             
             Spacer()
         }
-        .onReceive(springViewModel.$didUploadSpring) { springUploaded in
+        .onReceive(uploadSpringViewModel.$didUploadSpring) { springUploaded in
             if springUploaded {
                 presentationMode.wrappedValue.dismiss()
             }

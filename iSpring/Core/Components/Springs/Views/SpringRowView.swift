@@ -17,14 +17,12 @@ import Kingfisher
 
 struct SpringRowView: View {
     
-    @ObservedObject var springRowViewModel : SpringRowViewModel
-    @State var timeRemaining: String
+    @ObservedObject var springRowViewModel: SpringRowViewModel
+    @State var timeRemaining = String("--:--")
     
     init(spring: Spring) {
         
         self.springRowViewModel = SpringRowViewModel(spring: spring)
-        timeRemaining = String("--:--")
-        
     }
     
     func timeToExpiry(_ expiryTime: Date) -> String {
@@ -46,8 +44,6 @@ struct SpringRowView: View {
         }
 
     }
-    
-//    @State var timeRemaining = String("--:--")
     
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
@@ -82,6 +78,7 @@ struct SpringRowView: View {
                             .multilineTextAlignment(.leading)
                         
                     }
+                    
                     VStack(alignment: .center, spacing: 2) {
                         
                         Image(systemName: "timer")
@@ -104,14 +101,14 @@ struct SpringRowView: View {
                 let spring = springRowViewModel.spring
                 
                 // comment button
-                Button {
-                    // some action here..
-                } label: {
+                NavigationLink(destination: {
+                    CommentRowView(spring: spring)
+                }, label: {
                     VStack(alignment: .center, spacing: 2) {
                         Image(systemName: "bubble.left")
-                        Text("1")
+                        Text("\(spring.replies)")
                     }
-                }
+                })
                 
                 Spacer()
                 
@@ -121,7 +118,7 @@ struct SpringRowView: View {
                 } label: {
                     VStack(alignment: .center, spacing: 2) {
                         Image(systemName: "square.and.arrow.down")
-                        Text("2")
+                        Text("\(spring.saves)")
                     }
                 }
                 
@@ -133,7 +130,7 @@ struct SpringRowView: View {
                 } label: {
                     VStack(alignment: .center, spacing: 2) {
                         Image(systemName: "megaphone")
-                        Text("13")
+                        Text("1")
                     }
                 }
                 
@@ -144,7 +141,7 @@ struct SpringRowView: View {
                     springRowViewModel.upvoteSpring()
                 } label: {
                     VStack(alignment: .center, spacing: 2) {
-                        Image(systemName: springRowViewModel.spring.didUpvote ?? false ? "hand.thumbsup.fill" : "hand.thumbsup")
+                        Image(systemName: spring.didUpvote ?? false ? "hand.thumbsup.fill" : "hand.thumbsup")
                             .foregroundColor(.green)
                         Text("\(spring.upvotes)")
                     }
@@ -157,7 +154,7 @@ struct SpringRowView: View {
                     springRowViewModel.downvoteSpring()
                 } label: {
                     VStack(alignment: .center, spacing: 2) {
-                        Image(systemName: springRowViewModel.spring.didDownvote ?? false ? "hand.thumbsdown.fill" : "hand.thumbsdown")
+                        Image(systemName: spring.didDownvote ?? false ? "hand.thumbsdown.fill" : "hand.thumbsdown")
                             .foregroundColor(.red)
                         Text("\(spring.downvotes)")
                     }

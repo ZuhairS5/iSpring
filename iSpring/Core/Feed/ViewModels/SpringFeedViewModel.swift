@@ -21,6 +21,7 @@ class SpringFeedViewModel: ObservableObject {
     func fetchSprings() {
         
         service.fetchSprings { springs in
+            
             self.springs = springs
             
             for i in 0 ..< springs.count {
@@ -32,6 +33,9 @@ class SpringFeedViewModel: ObservableObject {
             }
             
         }
+        
+        print("DEBUG: Fetched new springs")
+        
     }
     
 }

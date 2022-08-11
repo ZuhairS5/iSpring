@@ -19,7 +19,7 @@
 		C620974B2888896600076B4B /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C620974A2888896600076B4B /* SearchBar.swift */; };
 		C620974D2888902900076B4B /* SpringService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C620974C2888902900076B4B /* SpringService.swift */; };
 		C620974F2888983700076B4B /* UploadSpringViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C620974E2888983700076B4B /* UploadSpringViewModel.swift */; };
-		C620975128889F7400076B4B /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C620975028889F7400076B4B /* FeedViewModel.swift */; };
+		C620975128889F7400076B4B /* SpringFeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C620975028889F7400076B4B /* SpringFeedViewModel.swift */; };
 		C62097552888A07700076B4B /* SpringModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62097542888A07700076B4B /* SpringModel.swift */; };
 		C62097572888AFDA00076B4B /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62097562888AFDA00076B4B /* ProfileViewModel.swift */; };
 		C620975B288A516600076B4B /* SpringRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C620975A288A516600076B4B /* SpringRowViewModel.swift */; };
@@ -45,6 +45,10 @@
 		C68FCB12283403EF000E4027 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = C68FCB11283403EF000E4027 /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		C68FCB14283403EF000E4027 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = C68FCB13283403EF000E4027 /* FirebaseAuth */; };
 		C68FCB16283403EF000E4027 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = C68FCB15283403EF000E4027 /* FirebaseFirestore */; };
+		C69CE96E28A5735A00025E48 /* CommentRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69CE96D28A5735A00025E48 /* CommentRowView.swift */; };
+		C69CE97028A58D6500025E48 /* CommentRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69CE96F28A58D6500025E48 /* CommentRowViewModel.swift */; };
+		C69CE97228A59B9A00025E48 /* CommentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69CE97128A59B9A00025E48 /* CommentModel.swift */; };
+		C69CE97428A5AA4C00025E48 /* CommentFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69CE97328A5AA4C00025E48 /* CommentFeedView.swift */; };
 		C6DC63EA284521F800F2C81A /* SpringFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DC63E9284521F800F2C81A /* SpringFeedView.swift */; };
 		C6DC63ED2845232400F2C81A /* SpringRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DC63EC2845232400F2C81A /* SpringRowView.swift */; };
 		C6DC63F0284552B200F2C81A /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DC63EF284552B200F2C81A /* MainTabView.swift */; };
@@ -90,7 +94,7 @@
 		C620974A2888896600076B4B /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		C620974C2888902900076B4B /* SpringService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpringService.swift; sourceTree = "<group>"; };
 		C620974E2888983700076B4B /* UploadSpringViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadSpringViewModel.swift; sourceTree = "<group>"; };
-		C620975028889F7400076B4B /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
+		C620975028889F7400076B4B /* SpringFeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpringFeedViewModel.swift; sourceTree = "<group>"; };
 		C62097542888A07700076B4B /* SpringModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpringModel.swift; sourceTree = "<group>"; };
 		C62097562888AFDA00076B4B /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		C620975A288A516600076B4B /* SpringRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpringRowViewModel.swift; sourceTree = "<group>"; };
@@ -110,6 +114,10 @@
 		C626D2C428524DB6007C3B3E /* ImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploader.swift; sourceTree = "<group>"; };
 		C62C19AB285276F000FE438F /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		C62C19AD2852799E00FE438F /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		C69CE96D28A5735A00025E48 /* CommentRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentRowView.swift; sourceTree = "<group>"; };
+		C69CE96F28A58D6500025E48 /* CommentRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentRowViewModel.swift; sourceTree = "<group>"; };
+		C69CE97128A59B9A00025E48 /* CommentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentModel.swift; sourceTree = "<group>"; };
+		C69CE97328A5AA4C00025E48 /* CommentFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentFeedView.swift; sourceTree = "<group>"; };
 		C6DC63E9284521F800F2C81A /* SpringFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpringFeedView.swift; sourceTree = "<group>"; };
 		C6DC63EC2845232400F2C81A /* SpringRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpringRowView.swift; sourceTree = "<group>"; };
 		C6DC63EF284552B200F2C81A /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
@@ -220,6 +228,7 @@
 			isa = PBXGroup;
 			children = (
 				C6DC63EC2845232400F2C81A /* SpringRowView.swift */,
+				C69CE96D28A5735A00025E48 /* CommentRowView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -228,6 +237,7 @@
 			isa = PBXGroup;
 			children = (
 				C620975A288A516600076B4B /* SpringRowViewModel.swift */,
+				C69CE96F28A58D6500025E48 /* CommentRowViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -352,7 +362,7 @@
 		C6A9DC422835562C006931BC /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				C620975028889F7400076B4B /* FeedViewModel.swift */,
+				C620975028889F7400076B4B /* SpringFeedViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -361,6 +371,7 @@
 			isa = PBXGroup;
 			children = (
 				C6DC63E9284521F800F2C81A /* SpringFeedView.swift */,
+				C69CE97328A5AA4C00025E48 /* CommentFeedView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -377,6 +388,7 @@
 			children = (
 				C62C19AD2852799E00FE438F /* UserModel.swift */,
 				C62097542888A07700076B4B /* SpringModel.swift */,
+				C69CE97128A59B9A00025E48 /* CommentModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -655,16 +667,19 @@
 				C620974D2888902900076B4B /* SpringService.swift in Sources */,
 				C6DC63FB2845561700F2C81A /* MessagesView.swift in Sources */,
 				C62C19AC285276F000FE438F /* UserService.swift in Sources */,
+				C69CE96E28A5735A00025E48 /* CommentRowView.swift in Sources */,
 				33A1479D2832A78600737AEA /* ContentView.swift in Sources */,
 				C626D2A0284F0B15007C3B3E /* SideMenuOptionRowView.swift in Sources */,
+				C69CE97428A5AA4C00025E48 /* CommentFeedView.swift in Sources */,
 				C6DC63EA284521F800F2C81A /* SpringFeedView.swift in Sources */,
 				C626D2BE285237E2007C3B3E /* ProfilePhotoSelectorView.swift in Sources */,
-				C620975128889F7400076B4B /* FeedViewModel.swift in Sources */,
+				C620975128889F7400076B4B /* SpringFeedViewModel.swift in Sources */,
 				C626D2C528524DB6007C3B3E /* ImageUploader.swift in Sources */,
 				C6DC63FD2845562400F2C81A /* NotificationsView.swift in Sources */,
 				C626D2A7284F8BE3007C3B3E /* NewSpringTextArea.swift in Sources */,
 				C6DC64022845C9C800F2C81A /* ProfileView.swift in Sources */,
 				C626D29E284EDF72007C3B3E /* SideMenuViewModel.swift in Sources */,
+				C69CE97028A58D6500025E48 /* CommentRowViewModel.swift in Sources */,
 				C6DC63F9284555E300F2C81A /* SavedSpringsView.swift in Sources */,
 				C620975B288A516600076B4B /* SpringRowViewModel.swift in Sources */,
 				C626D29A284EDF47007C3B3E /* SideMenuView.swift in Sources */,
@@ -680,6 +695,7 @@
 				C626D2B0284F9B4A007C3B3E /* RoundedShape.swift in Sources */,
 				C626D2BC2850472E007C3B3E /* AuthViewModel.swift in Sources */,
 				C620974B2888896600076B4B /* SearchBar.swift in Sources */,
+				C69CE97228A59B9A00025E48 /* CommentModel.swift in Sources */,
 				C626D295284EA423007C3B3E /* UserRowView.swift in Sources */,
 				C626D2AE284F975C007C3B3E /* SignUpView.swift in Sources */,
 				C626D2AC284F974E007C3B3E /* LoginView.swift in Sources */,
