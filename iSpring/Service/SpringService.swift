@@ -185,7 +185,7 @@ struct SpringService {
                            "comment": comment] as [String: Any]
         
         // upload the comment to the spring under comment collection of the spring
-        Firestore.firestore().collection("springs").document(springID).setData(commentData) { error in
+        Firestore.firestore().collection("springs").document(springID).collection("comments").document().setData(commentData) { error in
             
             if let error = error {
                 print("DEBUG: Failed to upload comment to spring")
@@ -205,6 +205,20 @@ struct SpringService {
         
     }
     
-    
+    // fetch the comments from Firebase given a spring
+    func fetchComments(spring: Spring, completion: @escaping([Comment]) -> Void) {
+        
+        // get the id of the spring
+        guard let springID = spring.id else { return }
+        
+        Firestore.firestore().collection("springs").document(springID).collection("comments").addSnapshotListener { snapshot, _ in
+            
+            guard let documents = snapshot?.documents else { return }
+            let comments = documents.compactMap({ try? $0.data(as: Comment.self) })
+            completion(comments.sorted(by: {$0.timestamp.dateValue() > $1.timestamp.dateValue()} ))
+            
+        }
+        
+    }
     
 }

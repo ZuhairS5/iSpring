@@ -7,23 +7,34 @@
 
 import Foundation
 
+// each instance of the comment should populate the comment, author and timestamp of comment
 class CommentRowViewModel: ObservableObject {
     
     private let service = SpringService()
-    @Published var spring: Spring
+    @Published var comment: Comment
+    private let userService = UserService()
     
-    init(spring: Spring) {
+    init(comment: Comment) {
         
-        self.spring = spring
+        self.comment = comment
         
     }
     
-    func comment(comment: String) {
+    // get the User, as an object, of the comment's author
+    func fetchUser(_ uuid: String) {
         
-        service.uploadComment(spring: spring, comment: comment) {
-            // do something with completion - dismiss the text pane
+        userService.fetchUser(withUUID: uuid) { user in
+            self.comment.user = user
         }
         
     }
+    
+//    func comment(comment: String) {
+//
+//        service.uploadComment(spring: spring, comment: comment) {
+//            // do something with completion - dismiss the text pane
+//        }
+//
+//    }
         
 }

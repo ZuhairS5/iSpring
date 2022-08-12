@@ -16,4 +16,6 @@ struct Comment: Identifiable, Decodable {
     let timestamp: Timestamp
     let comment: String
     
+    var user: User?
+    
 }

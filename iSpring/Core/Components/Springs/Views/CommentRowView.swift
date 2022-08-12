@@ -13,9 +13,9 @@ struct CommentRowView: View {
     @ObservedObject var commentRowViewModel: CommentRowViewModel
     
     // the comment view gets the comment and passes the comment to its view model
-    init(spring: Spring) {
+    init(comment: Comment) {
         
-        self.commentRowViewModel = CommentRowViewModel(spring: spring)
+        self.commentRowViewModel = CommentRowViewModel(comment: comment)
         
     }
     
@@ -23,7 +23,7 @@ struct CommentRowView: View {
         
         VStack {
             
-            if let user = commentRowViewModel.spring.user {
+            if let user = commentRowViewModel.comment.user {
                 
                 // profile image, username and spring text
                 HStack(alignment: .top, spacing: 12) {
@@ -36,19 +36,25 @@ struct CommentRowView: View {
                     
                     // user info and spring caption
                     VStack(alignment: .leading, spacing: 5) {
-                        Text("@SOME_USER")
+                        Text("@\(user.username)")
                             .font(.headline)
                             .fontWeight(.heavy)
                             .multilineTextAlignment(.leading)
                         
-                        Text("this is what a comment looks like")
+                        Text("\(Date(timeIntervalSince1970: TimeInterval(commentRowViewModel.comment.timestamp.seconds)).formatted(.dateTime.month(.wide).day().year(.extended())))")
+                            .font(.caption)
+                            .foregroundColor(Color.gray)
+                        
+                        Text("\(commentRowViewModel.comment.comment)")
                             .font(Font.body)
                             .multilineTextAlignment(.leading)
                         
                     }
                     
+                    Spacer()
+                    
                 }
-                
+                .padding()
                 
             }
             
@@ -57,4 +63,5 @@ struct CommentRowView: View {
         }
         
     }
+    
 }

@@ -102,7 +102,7 @@ struct SpringRowView: View {
                 
                 // comment button
                 NavigationLink(destination: {
-                    CommentRowView(spring: spring)
+                    CommentFeedView(spring: spring)
                 }, label: {
                     VStack(alignment: .center, spacing: 2) {
                         Image(systemName: "bubble.left")
@@ -170,10 +170,3 @@ struct SpringRowView: View {
     }
     
 }
-
-
-//struct SpringRowView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SpringRowView()
-//    }
-//}

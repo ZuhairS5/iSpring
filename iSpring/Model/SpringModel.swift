@@ -10,6 +10,7 @@ import FirebaseFirestoreSwift
 import Firebase
 
 struct Spring: Identifiable, Decodable {
+    // id refers to the id of the comment
     @DocumentID var id: String?
     let content: String
     var downvotes: Int
@@ -18,6 +19,7 @@ struct Spring: Identifiable, Decodable {
     var saves: Int
     let timestamp: Timestamp
     var upvotes: Int
+    // uuid refers to the person who authored the spring
     let uuid: String
     
     // these properties are not declared in the database
