@@ -13,7 +13,7 @@ import FirebaseFirestoreSwift
 struct User: Identifiable, Decodable {
     
     // information won't be retrieved if the decode fails
-    @DocumentID var id: String?
+    @DocumentID var id: String? // the uuid of the user
     let email: String
     let fullName: String
     let profileImageURL: String

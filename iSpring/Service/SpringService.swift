@@ -7,6 +7,7 @@
 
 import Foundation
 import Firebase
+import FirebaseFirestoreSwift
 
 struct SpringService {
     
@@ -135,14 +136,21 @@ struct SpringService {
         
         // the id of the post that was liked
         guard let springID = spring.id else { return }
+        let springExpiry = spring.postExpiry
         guard spring.upvotes >= 0 else { return }
         
         // retrieve the post based on id
         Firestore.firestore().collection("springs").document(springID)
             .updateData(["upvotes": spring.upvotes + 1]) { _ in
                 userLikesRef.document(springID).setData([:]) { _ in
-                    completion()
+                    
+                    // add one minute to the spring timer
+                    Firestore.firestore().collection("springs").document(springID)
+                        .updateData(["postExpiry": springExpiry.advanced(by: 60)]) { _ in
+                            completion()
+                        }
                     print("DEBUG: Spring upvoted")
+                    
                 }
             }
         
@@ -161,12 +169,19 @@ struct SpringService {
         
         // the id of the post that was liked
         guard let springID = spring.id else { return }
+        let springExpiry = spring.postExpiry
         guard spring.downvotes >= 0 else { return }
         // retrieve the post based on id
         Firestore.firestore().collection("springs").document(springID)
             .updateData(["downvotes": isDownvoted ? spring.downvotes - 1 : spring.downvotes + 1]) { _ in
                 userLikesRef.document(springID).setData([:]) { _ in
-                    completion()
+                    
+                    // remove one minute from spring timer
+                    Firestore.firestore().collection("springs").document(springID)
+                        .updateData(["postExpiry": springExpiry.advanced(by: -60)]) { _ in
+                            completion()
+                        }
+                    
                     print("DEBUG: Spring was disliked and now the UI must be updated")
                 }
             }
@@ -280,36 +295,46 @@ struct SpringService {
     }
     
     // get the springs saved under the collection of saved springs
-    func fetchSavedSprings(uuid: String, completion: @escaping([Spring]) -> Void) {
+    func fetchSavedSprings(completion: @escaping([Spring]) -> Void) {
+        
+        guard let uuid = Auth.auth().currentUser?.uid else { return }
         
         // get the user's document and access the saved springs collection
         Firestore.firestore().collection("users").document(uuid).collection("saved-springs")
-            .order(by: "timestamp", descending: true)
             .addSnapshotListener { snapshot, _ in
             
-            guard let documents = snapshot?.documents else { return }
+                guard let documents = snapshot?.documents else { return }
                 
-            // the data is an array of spring id's
-            let savedSpringsID = documents.compactMap({ try? $0.data(as: String.self) })
+                // the data is an array of spring id's
+                var savedSpringsID: [String] = []
                 
-            // retrieve the springs given the id's
-            var savedSprings = [Spring]()
-                
-                for i in 0 ..< savedSpringsID.count {
-                    
-                    Firestore.firestore().collection("springs").document(savedSpringsID[i])
-                        .addSnapshotListener { docSnap, _ in
-                            
-                            let spring = docSnap.map({ try? $0.data(as: Spring.self) })
-                            savedSprings.append(spring!!)
-                            
-                        }
-
+                documents.forEach { document in
+                    savedSpringsID.append(document.documentID)
                 }
-            
-            completion(savedSprings)
-            print("DEBUG: Fetched saved springs successfully")
-        }
+                
+                print("DEBUG: documents \(savedSpringsID)")
+                
+//                let savedSpringsID = documents.compactMap({ try? $0.data(as: String.self) })
+                    
+                // retrieve the springs given the id's
+                var savedSprings = [Spring]()
+                    
+                    for i in 0 ..< savedSpringsID.count {
+                        
+                        Firestore.firestore().collection("springs").document(savedSpringsID[i])
+                            .addSnapshotListener { docSnap, _ in
+                                
+                                let spring = docSnap.map({ try? $0.data(as: Spring.self) })
+                                guard let spring = spring else { return }
+                                savedSprings.append(spring!)
+                                
+                            }
+
+                    }
+                
+                completion(savedSprings)
+                print("DEBUG: Fetched saved springs successfully")
+            }
         
     }
     

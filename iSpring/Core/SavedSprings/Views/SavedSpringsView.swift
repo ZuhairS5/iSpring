@@ -10,17 +10,25 @@ import SwiftUI
 struct SavedSpringsView: View {
     
     @ObservedObject var savedSpringsViewModel: SavedSpringsViewModel
-
+    
     init() {
-
-
-
+        
+        self.savedSpringsViewModel = SavedSpringsViewModel()
+        
     }
     
     var body: some View {
         
-        Text("Saved springs")
-        
+        VStack {
+            
+            ForEach(savedSpringsViewModel.savedSprings) { savedSpring in
+                
+                SpringRowView(spring: savedSpring)
+                    .padding()
+                
+            }
+            
+        }
         
     }
 }

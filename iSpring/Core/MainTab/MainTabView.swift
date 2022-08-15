@@ -11,7 +11,8 @@ struct MainTabView: View {
     
     // when the user clicks on an icon, the index updates to the corressponding tab instructing the view to change respectively
     @State private var currentTabIndex = 2
-    
+    @EnvironmentObject var viewModel: AuthViewModel
+
     var body: some View {
         TabView(selection: $currentTabIndex) {
             // go to explore view

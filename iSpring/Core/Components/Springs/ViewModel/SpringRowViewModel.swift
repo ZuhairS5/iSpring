@@ -19,7 +19,7 @@ class SpringRowViewModel: ObservableObject {
     }
     
     func upvoteSpring() {
-        if spring.didUpvote ?? false {
+        if !(spring.didUpvote ?? false) && !(spring.didDownvote ?? false) {
             
             service.upvoteSpring(spring, isUpvoted: spring.didUpvote ?? false) {
                 self.spring.didUpvote?.toggle()
@@ -30,30 +30,26 @@ class SpringRowViewModel: ObservableObject {
     
     func downvoteSpring() {
         
-        service.downvoteSpring(spring, isDownvoted: spring.didDownvote ?? false) {
-            self.spring.didDownvote?.toggle()
+        if !(spring.didDownvote ?? false) && !(spring.didUpvote ?? false) {
+            
+            service.downvoteSpring(spring, isDownvoted: spring.didDownvote ?? false) {
+                self.spring.didDownvote?.toggle()
+            }
+            
         }
         
     }
     
     func checkIfUserUpvotedSpring() {
         service.checkIfUserUpvotedSpring(spring: spring) { didUpvote in
-            if didUpvote {
-                self.spring.didUpvote = true
-            } else {
-                self.spring.didUpvote = false
-            }
+            self.spring.didUpvote = didUpvote
         }
     }
     
     func checkIfUserDownvotedSpring() {
         
         service.checkIfUserDownvotedSpring(spring: spring) { didDownvote in
-            if didDownvote {
-                self.spring.didDownvote = true
-            } else {
-                self.spring.didDownvote = false
-            }
+            self.spring.didDownvote = didDownvote
         }
         
     }

@@ -11,11 +11,18 @@ class SavedSpringsViewModel: ObservableObject {
     
     @Published var savedSprings = [Spring]()
     let springService = SpringService()
-    let userService = UserService()
+    
+    init() {
+        fetchSavedSprings()
+    }
     
     func fetchSavedSprings() {
         
-        springService.fetchSavedSprings(uuid: <#T##String#>, completion: <#T##([Spring]) -> Void#>)
+        springService.fetchSavedSprings() { springs in
+            self.savedSprings = springs
+            print("DEBUG: saved springs fetched in viewModel")
+            print("DEBUG: springs \(self.savedSprings)")
+        }
         
     }
     
