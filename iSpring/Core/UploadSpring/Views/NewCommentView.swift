@@ -1,25 +1,29 @@
 //
-//  NewSpringView.swift
+//  NewCommentView.swift
 //  iSpring
 //
-//  Created by Samhith Sripada on 2022-06-07.
+//  Created by Samhith Sripada on 2022-08-14.
 //
 
 import SwiftUI
 import Kingfisher
 
-struct NewSpringView: View {
+struct NewCommentView: View {
     
-    @State private var springText = ""
-    // an environment variable that can recognize the presentation state of the app
+    @State var commentText = ""
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var viewModel: AuthViewModel
-//    @ObservedObject var uploadSpringViewModel = UploadSpringViewModel()
-    @StateObject var uploadSpringViewModel = UploadSpringViewModel()
+    @StateObject var uploadCommentViewModel = UploadCommentViewModel()
+    private var spring: Spring
+    
+    init(_ spring: Spring) {
+        
+        self.spring = spring
+        
+    }
     
     var body: some View {
         VStack {
-            
             HStack {
                 // cancel button that discards the spring being created
                 Button {
@@ -35,8 +39,8 @@ struct NewSpringView: View {
                 
                 // send button publishes the spring onto the platform
                 Button {
-                    // the send button
-                    uploadSpringViewModel.uploadSpring(withCaption: springText)
+                    // the send comment button
+                    uploadCommentViewModel.uploadComment(comment: commentText, spring: spring)
                     
                 } label: {
                     Text("Send")
@@ -44,7 +48,7 @@ struct NewSpringView: View {
                         .padding(.horizontal)
                         .padding(.vertical, 5)
                 }
-                .background(springText.isEmpty ? .gray : .green)
+                .background(commentText.isEmpty ? .gray : .green)
                 .foregroundColor(.white)
                 .clipShape(Capsule())
                 .padding()
@@ -66,23 +70,18 @@ struct NewSpringView: View {
                     
                 }
                 
-                NewTextArea("Share your ideas...", text: $springText)
+                NewTextArea("Share your comment...", text: $commentText)
                 
             }
             .padding()
             
             Spacer()
         }
-        .onReceive(uploadSpringViewModel.$didUploadSpring) { springUploaded in
-            if springUploaded {
+        .onReceive(uploadCommentViewModel.$didUploadComment) { commentUploaded in
+            if commentUploaded {
                 presentationMode.wrappedValue.dismiss()
             }
-        } // dismisses the sheet when the spring is uploaded successfully 
+        } // dismisses the sheet when the comment is uploaded successfully
     }
 }
 
-struct NewSpringView_Previews: PreviewProvider {
-    static var previews: some View {
-        NewSpringView()
-    }
-}

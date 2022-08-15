@@ -13,6 +13,7 @@ struct CommentFeedView: View {
     // this is an array of comment objects returned from the view model
     @ObservedObject var commentFeedViewModel: CommentFeedViewModel
     @ObservedObject var springRowViewModel: SpringRowViewModel
+    @State private var showNewCommentView = false
     
     init(spring: Spring) {
         
@@ -23,7 +24,7 @@ struct CommentFeedView: View {
     
     var body: some View {
         
-        ZStack {
+        ZStack(alignment: .bottomTrailing) {
             ScrollView {
                 LazyVStack {
                     
@@ -35,6 +36,32 @@ struct CommentFeedView: View {
                     
                 }
             }
+            
+            ZStack {
+                Circle()
+                    .fill(.white)
+                    .frame(width: 40, height: 40)
+                
+                Button {
+                    showNewCommentView.toggle()
+                } label: {
+                    Image(systemName: "plus.bubble.fill")
+                        .resizable()
+                        .renderingMode(.template)
+                        .frame(width: 40, height: 40)
+                        .padding()
+                }
+                .background(Color(.clear))
+                .foregroundColor(.black)
+                .clipShape(Circle())
+                .padding()
+                .fullScreenCover(isPresented: $showNewCommentView) {
+                    NewCommentView(springRowViewModel.spring)
+                }
+                
+            }
+            .navigationBarTitleDisplayMode(.inline)
+            
         }
         
     }

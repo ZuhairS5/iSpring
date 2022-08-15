@@ -28,6 +28,7 @@ class CommentFeedViewModel: ObservableObject {
         
         service.fetchComments(spring: spring) { comments in
             self.comments = comments
+            print("DEBUG: There are \(comments.count) comments")
             
             for i in 0 ..< comments.count {
                 

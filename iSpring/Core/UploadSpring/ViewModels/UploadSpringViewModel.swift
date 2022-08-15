@@ -16,11 +16,7 @@ class UploadSpringViewModel: ObservableObject {
         
         service.uploadSpring(content: caption) { springUploaded in
             
-            if springUploaded {
-                self.didUploadSpring = true
-            } else {
-                self.didUploadSpring = false
-            }
+            self.didUploadSpring = springUploaded
             
         }
         

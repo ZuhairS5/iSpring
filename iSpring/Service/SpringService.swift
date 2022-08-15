@@ -41,6 +41,7 @@ struct SpringService {
                 print("DEBUG: Successfully uploaded new spring.")
                 
             }
+        
     }
     
     // used to get all springs (feed view)
@@ -49,11 +50,25 @@ struct SpringService {
         Firestore.firestore().collection("springs").order(by: "timestamp", descending: true)
             .addSnapshotListener { snapshot, _ in
             guard let documents = snapshot?.documents else { return }
-            let springs = documents.compactMap({ try? $0.data(as: Spring.self) })
+            var springs = documents.compactMap({ try? $0.data(as: Spring.self) })
+                
+            var latestSprings = [Spring]()
+                
+            for i in 0 ..< springs.count {
+                
+                if springs[i].postExpiry.timeIntervalSinceNow > 0 {
+                    
+                    print("DEBUG: spring expired on - \(springs[i].postExpiry)")
+                    latestSprings.append(springs[i])
+                    
+                }
+                
+            }
+                
+            springs = latestSprings
+            latestSprings.removeAll()
             completion(springs)
-//            documents.forEach { document in
-//                print(document.data())
-//            }
+            
         }
         
 //        Firestore.firestore().collection("springs").order(by: "timestamp", descending: true)
@@ -74,8 +89,27 @@ struct SpringService {
         Firestore.firestore().collection("springs").whereField("uuid", isEqualTo: uuid)
             .addSnapshotListener { snapshot, _ in
             guard let documents = snapshot?.documents else { return }
-            let springs = documents.compactMap({ try? $0.data(as: Spring.self) })
-            completion(springs.sorted(by: {$0.timestamp.dateValue() > $1.timestamp.dateValue()} ))
+            var springs = documents.compactMap({ try? $0.data(as: Spring.self) })
+                
+                var latestSprings = [Spring]()
+                    
+                for i in 0 ..< springs.count {
+                    
+                    if springs[i].postExpiry.timeIntervalSinceNow > 0 {
+                        
+                        print("DEBUG: spring expired on - \(springs[i].postExpiry)")
+                        latestSprings.append(springs[i])
+                        
+                    }
+                    
+                }
+                    
+                springs = latestSprings.sorted(by: {$0.timestamp.dateValue() > $1.timestamp.dateValue()} )
+                latestSprings.removeAll()
+                completion(springs)
+                
+//            springs = springs.sorted(by: {$0.timestamp.dateValue() > $1.timestamp.dateValue()} )
+//            completion(springs)
 
         }
         
@@ -168,7 +202,7 @@ struct SpringService {
     
     // this function attaches a comment to the spring and lets the view model when comment is posted
     // works as if iSpring uploads a comment under the collection of a spring
-    func uploadComment(spring: Spring, comment: String, completion: @escaping() -> Void) {
+    func uploadComment(spring: Spring, comment: String, completion: @escaping(Bool) -> Void) {
         
         // get the id of the spring
         guard let springID = spring.id else { return }
@@ -188,6 +222,7 @@ struct SpringService {
         Firestore.firestore().collection("springs").document(springID).collection("comments").document().setData(commentData) { error in
             
             if let error = error {
+                completion(false)
                 print("DEBUG: Failed to upload comment to spring")
                 return
             }
@@ -196,7 +231,7 @@ struct SpringService {
             Firestore.firestore().collection("springs").document(springID)
                 .updateData(["replies": spring.replies + 1]) { _ in
                     
-                    completion()
+                    completion(true)
                     print("DEBUG: Successfully uploaded the comment")
                     
                 }

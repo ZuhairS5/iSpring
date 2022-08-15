@@ -79,6 +79,8 @@ struct SpringRowView: View {
                         
                     }
                     
+                    Spacer()
+                    
                     VStack(alignment: .center, spacing: 2) {
                         
                         Image(systemName: "timer")
@@ -88,7 +90,6 @@ struct SpringRowView: View {
                             }
                         
                     }
-                    .padding(.leading)
                     .padding(.leading)
                     
                 }

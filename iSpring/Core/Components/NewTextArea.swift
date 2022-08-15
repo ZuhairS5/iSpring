@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct NewSpringTextArea: View {
+struct NewTextArea: View {
     
     @Binding var text: String
     let placeholder: String
