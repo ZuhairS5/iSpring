@@ -58,6 +58,6 @@ class SpringRowViewModel: ObservableObject {
         
     }
     
-    
+    func saveSpring() { service.saveSpring(spring: spring) {} }
     
 }

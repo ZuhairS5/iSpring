@@ -138,7 +138,6 @@ struct SpringService {
         guard spring.upvotes >= 0 else { return }
         
         // retrieve the post based on id
-        
         Firestore.firestore().collection("springs").document(springID)
             .updateData(["upvotes": spring.upvotes + 1]) { _ in
                 userLikesRef.document(springID).setData([:]) { _ in
@@ -252,6 +251,64 @@ struct SpringService {
             let comments = documents.compactMap({ try? $0.data(as: Comment.self) })
             completion(comments.sorted(by: {$0.timestamp.dateValue() > $1.timestamp.dateValue()} ))
             
+        }
+        
+    }
+    
+    // save the spring under a saved springs collection within the user's collection
+    func saveSpring(spring: Spring, completion: @escaping() -> Void) {
+        
+        guard let uuid = Auth.auth().currentUser?.uid else { return }
+        
+        guard let springID = spring.id else { return }
+        
+        // increment the saved spring count by one
+        Firestore.firestore().collection("springs").document(springID)
+            .updateData(["saves" : spring.saves + 1]) { _ in
+                
+                // add the spring to the user's collection of saved springs
+                Firestore.firestore().collection("users").document(uuid)
+                    .collection("saved-springs")
+                    .document(springID)
+                    .setData([:]) { _ in
+                        completion()
+                        print("DEBUG: spring \(springID) saved successfully")
+                    }
+                
+            }
+        
+    }
+    
+    // get the springs saved under the collection of saved springs
+    func fetchSavedSprings(uuid: String, completion: @escaping([Spring]) -> Void) {
+        
+        // get the user's document and access the saved springs collection
+        Firestore.firestore().collection("users").document(uuid).collection("saved-springs")
+            .order(by: "timestamp", descending: true)
+            .addSnapshotListener { snapshot, _ in
+            
+            guard let documents = snapshot?.documents else { return }
+                
+            // the data is an array of spring id's
+            let savedSpringsID = documents.compactMap({ try? $0.data(as: String.self) })
+                
+            // retrieve the springs given the id's
+            var savedSprings = [Spring]()
+                
+                for i in 0 ..< savedSpringsID.count {
+                    
+                    Firestore.firestore().collection("springs").document(savedSpringsID[i])
+                        .addSnapshotListener { docSnap, _ in
+                            
+                            let spring = docSnap.map({ try? $0.data(as: Spring.self) })
+                            savedSprings.append(spring!!)
+                            
+                        }
+
+                }
+            
+            completion(savedSprings)
+            print("DEBUG: Fetched saved springs successfully")
         }
         
     }

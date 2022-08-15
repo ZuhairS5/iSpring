@@ -52,6 +52,7 @@
 		C69CE97628A61FD200025E48 /* CommentFeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69CE97528A61FD200025E48 /* CommentFeedViewModel.swift */; };
 		C69CE97828A9BFA100025E48 /* NewCommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69CE97728A9BFA000025E48 /* NewCommentView.swift */; };
 		C69CE97A28A9BFB300025E48 /* UploadCommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69CE97928A9BFB300025E48 /* UploadCommentViewModel.swift */; };
+		C69CE97E28A9EBBD00025E48 /* SavedSpingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69CE97D28A9EBBD00025E48 /* SavedSpingsViewModel.swift */; };
 		C6DC63EA284521F800F2C81A /* SpringFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DC63E9284521F800F2C81A /* SpringFeedView.swift */; };
 		C6DC63ED2845232400F2C81A /* SpringRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DC63EC2845232400F2C81A /* SpringRowView.swift */; };
 		C6DC63F0284552B200F2C81A /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DC63EF284552B200F2C81A /* MainTabView.swift */; };
@@ -124,6 +125,7 @@
 		C69CE97528A61FD200025E48 /* CommentFeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentFeedViewModel.swift; sourceTree = "<group>"; };
 		C69CE97728A9BFA000025E48 /* NewCommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCommentView.swift; sourceTree = "<group>"; };
 		C69CE97928A9BFB300025E48 /* UploadCommentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadCommentViewModel.swift; sourceTree = "<group>"; };
+		C69CE97D28A9EBBD00025E48 /* SavedSpingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedSpingsViewModel.swift; sourceTree = "<group>"; };
 		C6DC63E9284521F800F2C81A /* SpringFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpringFeedView.swift; sourceTree = "<group>"; };
 		C6DC63EC2845232400F2C81A /* SpringRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpringRowView.swift; sourceTree = "<group>"; };
 		C6DC63EF284552B200F2C81A /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
@@ -367,6 +369,22 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		C69CE97B28A9D10800025E48 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C6DC63F8284555E300F2C81A /* SavedSpringsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C69CE97C28A9D11100025E48 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				C69CE97D28A9EBBD00025E48 /* SavedSpingsViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		C6A9DC422835562C006931BC /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -497,7 +515,8 @@
 		C6DC63F52845556000F2C81A /* SavedSprings */ = {
 			isa = PBXGroup;
 			children = (
-				C6DC63F8284555E300F2C81A /* SavedSpringsView.swift */,
+				C69CE97C28A9D11100025E48 /* ViewModels */,
+				C69CE97B28A9D10800025E48 /* Views */,
 			);
 			path = SavedSprings;
 			sourceTree = "<group>";
@@ -693,6 +712,7 @@
 				C69CE97028A58D6500025E48 /* CommentRowViewModel.swift in Sources */,
 				C6DC63F9284555E300F2C81A /* SavedSpringsView.swift in Sources */,
 				C620975B288A516600076B4B /* SpringRowViewModel.swift in Sources */,
+				C69CE97E28A9EBBD00025E48 /* SavedSpingsViewModel.swift in Sources */,
 				C626D29A284EDF47007C3B3E /* SideMenuView.swift in Sources */,
 				C626D2B428501C4B007C3B3E /* CustomTextField.swift in Sources */,
 				C62097552888A07700076B4B /* SpringModel.swift in Sources */,

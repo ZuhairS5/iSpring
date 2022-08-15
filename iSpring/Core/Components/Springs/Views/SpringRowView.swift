@@ -19,10 +19,12 @@ struct SpringRowView: View {
     
     @ObservedObject var springRowViewModel: SpringRowViewModel
     @State var timeRemaining = String("--:--")
+    var actionsDisabled: Bool
     
-    init(spring: Spring) {
+    init(spring: Spring, _ actionsDisabled: Bool = false) {
         
         self.springRowViewModel = SpringRowViewModel(spring: spring)
+        self.actionsDisabled = actionsDisabled
     }
     
     func timeToExpiry(_ expiryTime: Date) -> String {
@@ -97,76 +99,80 @@ struct SpringRowView: View {
             }
             
             // action buttons
-            HStack {
+            if !actionsDisabled {
                 
-                let spring = springRowViewModel.spring
-                
-                // comment button
-                NavigationLink(destination: {
-                    CommentFeedView(spring: spring)
-                }, label: {
-                    VStack(alignment: .center, spacing: 2) {
-                        Image(systemName: "bubble.left")
-                        Text("\(spring.replies)")
+                HStack {
+                    
+                    let spring = springRowViewModel.spring
+                    
+                    // comment button
+                    NavigationLink(destination: {
+                        CommentFeedView(spring: spring)
+                    }, label: {
+                        VStack(alignment: .center, spacing: 2) {
+                            Image(systemName: "bubble.left")
+                            Text("\(spring.replies)")
+                        }
+                    })
+                    
+                    Spacer()
+                    
+                    // save button
+                    Button {
+                        springRowViewModel.saveSpring()
+                    } label: {
+                        VStack(alignment: .center, spacing: 2) {
+                            Image(systemName: "square.and.arrow.down")
+                            Text("\(spring.saves)")
+                        }
                     }
-                })
-                
-                Spacer()
-                
-                // save button
-                Button {
-                    // some action here..
-                } label: {
-                    VStack(alignment: .center, spacing: 2) {
-                        Image(systemName: "square.and.arrow.down")
-                        Text("\(spring.saves)")
+                    
+                    Spacer()
+                    
+                    // respring button
+                    Button {
+                        // some action here..
+                    } label: {
+                        VStack(alignment: .center, spacing: 2) {
+                            Image(systemName: "megaphone")
+                            Text("1")
+                        }
                     }
-                }
-                
-                Spacer()
-                
-                // respring button
-                Button {
-                    // some action here..
-                } label: {
-                    VStack(alignment: .center, spacing: 2) {
-                        Image(systemName: "megaphone")
-                        Text("1")
+                    
+                    Spacer()
+                    
+                    // upvote button
+                    Button {
+                        springRowViewModel.upvoteSpring()
+                    } label: {
+                        VStack(alignment: .center, spacing: 2) {
+                            Image(systemName: spring.didUpvote ?? false ? "hand.thumbsup.fill" : "hand.thumbsup")
+                                .foregroundColor(.green)
+                            Text("\(spring.upvotes)")
+                        }
                     }
-                }
-                
-                Spacer()
-                
-                // upvote button
-                Button {
-                    springRowViewModel.upvoteSpring()
-                } label: {
-                    VStack(alignment: .center, spacing: 2) {
-                        Image(systemName: spring.didUpvote ?? false ? "hand.thumbsup.fill" : "hand.thumbsup")
-                            .foregroundColor(.green)
-                        Text("\(spring.upvotes)")
-                    }
-                }
 
-                Spacer()
-                
-                // downvote button
-                Button {
-                    springRowViewModel.downvoteSpring()
-                } label: {
-                    VStack(alignment: .center, spacing: 2) {
-                        Image(systemName: spring.didDownvote ?? false ? "hand.thumbsdown.fill" : "hand.thumbsdown")
-                            .foregroundColor(.red)
-                        Text("\(spring.downvotes)")
+                    Spacer()
+                    
+                    // downvote button
+                    Button {
+                        springRowViewModel.downvoteSpring()
+                    } label: {
+                        VStack(alignment: .center, spacing: 2) {
+                            Image(systemName: spring.didDownvote ?? false ? "hand.thumbsdown.fill" : "hand.thumbsdown")
+                                .foregroundColor(.red)
+                            Text("\(spring.downvotes)")
+                        }
                     }
+                    
                 }
+                .padding()
                 
             }
-            .padding()
+            
             Divider()
             
         }
-        
         
     }
     
